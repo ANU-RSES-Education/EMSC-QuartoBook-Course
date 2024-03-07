@@ -16,5 +16,5 @@ dependencies:
   - pip
   - pip:  
     - gmsh
-    - jupyter-lab>=4.1
+    - jupyterlab>=4.1
     - jupytext>=1.16.1
