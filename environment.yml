@@ -15,5 +15,6 @@ dependencies:
   - pytest
   - pyvista # flagged in some tests 
   - pip
+  - pip:
         jupyter-lab>=4.1
         jupytext>=1.16.1
