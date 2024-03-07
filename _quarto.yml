@@ -14,11 +14,21 @@ book:
     - Notebooks/TestNB1.ipynb
     - Notebooks/TestQMD_NB1.qmd
 
+
 bibliography: references.bib
 
 format:
   html:
     theme: cosmo
+    code-links:
+      - text: Open in Binder
+        icon: rocket-takeoff
+        href: https://mybinder.org/v2/gh/ANU-RSES-Education/EMSC-QuartoBook/HEAD?labpath=Notebooks%2FBinderLandingPage.qmd
+    other-links:
+      - text: Github Repository
+        icon: github
+        href: https://github.com/ANU-RSES-Education/EMSC-QuartoBook
+  
   pdf:
     documentclass: scrreprt
 
