@@ -1,0 +1,41 @@
+project:
+  type: book
+
+book:
+  title: "BOOK"
+  author: "Louis Moresi"
+  date: "06/03/2024"
+  chapters:
+    - part: "Introduction"
+      chapters:
+        - index.qmd
+        - intro.qmd
+    - part: "Details"
+      chapters:
+      - summary.qmd
+      - references.qmd
+    - part: "Notes"
+
+  appendices:
+    - Notebooks/TestNB1.ipynb
+    - Notebooks/TestQMD_NB1.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: flatly # united / simplex
+    code-links:
+      - text: Open in Binder
+        icon: rocket-takeoff
+        href: https://mybinder.org/v2/gh/ANU-RSES-Education/EMSC-QuartoBook/HEAD?labpath=WebBook/Notebooks%2FBinderLandingPage.qmd
+    other-links:
+      - text: Github Repository
+        icon: github
+        href: https://github.com/ANU-RSES-Education/EMSC-QuartoBook
+  
+  pdf:
+    documentclass: scrreprt
+
+
+
