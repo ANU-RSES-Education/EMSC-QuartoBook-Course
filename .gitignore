@@ -1,5 +1,8 @@
 /.quarto/
-
 **/.ipynb_checkpoints
 
-WebBook/_build/
+WebBook/_book/
+WebLectures/*_files/
+
+
+
