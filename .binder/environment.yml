@@ -1,5 +1,4 @@
-# Conda Environment for python packages etc
-
+# Conda Environment for python packages running under BINDER
 name: emsc_basics
 channels:
   - conda-forge
@@ -12,10 +11,12 @@ dependencies:
   - h5py
   - sympy
   - pytest
-  - pyvista 
+  - pyvista[all]
   - pip
   - pip:  
     - gmsh
     - jupyterlab>=4.1
     - jupytext>=1.16.1
     - pygments>=2.17.0
+
+  
