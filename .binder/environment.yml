@@ -12,7 +12,7 @@ dependencies:
   - h5py
   - sympy
   - pytest
-  - pyvista # flagged in some tests 
+  - pyvista 
   - pip
   - pip:  
     - gmsh

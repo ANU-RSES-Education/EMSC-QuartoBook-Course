@@ -14,9 +14,9 @@ book:
       chapters:
       - summary.qmd
       - references.qmd
-    - part: "Notes"
 
   appendices:
+    - Notebooks/BinderLandingPage.qmd
     - Notebooks/TestNB1.ipynb
     - Notebooks/TestQMD_NB1.qmd
 

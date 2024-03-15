@@ -1,5 +1,5 @@
 ---
-title: Landing Page
+title: Index of Notebooks
 jupyter:
   jupytext:
     text_representation:
@@ -13,5 +13,7 @@ jupyter:
     name: python3
 ---
 
+Index of notebooks:
 
-
+  - [TestNB1 (ipynb)](TestNB1.ipynb)
+  - [TestQMD (qmd)](TestQMD_NB1.qmd)

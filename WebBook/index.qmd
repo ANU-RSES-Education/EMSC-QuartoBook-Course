@@ -1,5 +1,5 @@
 ---
-title: Preface
+title: EMSC Lecture Notes
 jupyter:
   jupytext:
     text_representation:
@@ -13,7 +13,8 @@ jupyter:
     name: python3
 ---
 
-This is a Quarto book.
+This is a template for Lecture notes 
+
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.
 

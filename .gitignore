@@ -4,5 +4,8 @@
 WebBook/_book/
 WebLectures/*_files/
 
+**/.quarto/
+WebBook/.quarto/_freeze/*
 
-
+WebBook/.quarto/_freeze/index/execute-results/html.json
+WebBook/.quarto/_freeze/index/execute-results/tex.json
