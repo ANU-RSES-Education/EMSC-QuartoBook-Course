@@ -18,5 +18,6 @@ dependencies:
     - jupyterlab>=4.1
     - jupytext>=1.16.1
     - pygments>=2.17.0
-
+    - trame-vtk
+    - trame-vuetify
   
