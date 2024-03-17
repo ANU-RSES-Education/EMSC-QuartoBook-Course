@@ -21,12 +21,9 @@ jobs:
         with:
           micromamba-version: '1.5.6-0' # any version from https://github.com/mamba-org/micromamba-releases
           environment-file: .github/workflows/envs/renderer.yml
-          init-shell: >-
-            bash
-            powershell
-          cache-environment: false # while debugging
+          init-shell: bash
+          cache-environment: true
           post-cleanup: 'all'
-
 
       - name: Build docs with jupyterbook
         shell: bash -l {0}
