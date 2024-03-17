@@ -5,7 +5,6 @@ channels:
 dependencies:
   - python=3.10
   - quarto
-  - texlive-core
   - pip
   - pip:  
     - jupyterlab>=4.1

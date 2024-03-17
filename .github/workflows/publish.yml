@@ -28,6 +28,7 @@ jobs:
       - name: Build docs with jupyterbook
         shell: bash -l {0}
         run: |
+          quarto install tinytex
           cd WebBook
           quarto render
 
