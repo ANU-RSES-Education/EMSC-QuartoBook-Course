@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "BOOK",
+    "section": "",
+    "text": "This is a template for Lecture notes\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 Description\n\\[\n\\int_0^1 \\mathbf{x} d\\Omega\n\\]",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>EMSC Lecture Notes</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "2  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "3  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "Details",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "Details",
+      "References"
+    ]
+  },
+  {
+    "objectID": "Notebooks/BinderLandingPage.html",
+    "href": "Notebooks/BinderLandingPage.html",
+    "title": "Appendix A — Index of Notebooks",
+    "section": "",
+    "text": "Index of notebooks:\n\nTestNB1 (ipynb)\nTestQMD (qmd)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Index of Notebooks</span>"
+    ]
+  },
+  {
+    "objectID": "Notebooks/TestNB1.html",
+    "href": "Notebooks/TestNB1.html",
+    "title": "Appendix B — Test Notebook",
+    "section": "",
+    "text": "for i in range(0,10):\n    print(i)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Test Notebook</span>"
+    ]
+  },
+  {
+    "objectID": "Notebooks/TestQMD_NB1.html",
+    "href": "Notebooks/TestQMD_NB1.html",
+    "title": "Appendix C — Quarto MD notebook",
+    "section": "",
+    "text": "for i in range(0,10):\n    print(i+1)\n\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Quarto MD notebook</span>"
+    ]
+  }
+]
