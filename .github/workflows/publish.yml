@@ -20,7 +20,7 @@ jobs:
       - uses: mamba-org/setup-micromamba@v1
         with:
           micromamba-version: '1.5.6-0' # any version from https://github.com/mamba-org/micromamba-releases
-          environment-file: .github/workflows/renderer_environment.yml
+          environment-file: .github/workflows/envs/renderer.yml
           init-shell: >-
             bash
             powershell
