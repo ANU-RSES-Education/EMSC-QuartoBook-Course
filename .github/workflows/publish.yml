@@ -27,8 +27,9 @@ jobs:
           cache-environment: false # while debugging
           post-cleanup: 'all'
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
+      # Set up quarto in the render environment, not here
+      # - name: Set up Quarto
+      #   uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
