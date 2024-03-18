@@ -31,6 +31,7 @@ jobs:
           quarto install tinytex
           cd WebBook
           quarto render
+          cd ..
           cd WebLectures
           quarto render
 
