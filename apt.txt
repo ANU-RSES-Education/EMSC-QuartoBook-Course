@@ -1,3 +1,0 @@
-zip
-libgl1-mesa-glx
-xvfb

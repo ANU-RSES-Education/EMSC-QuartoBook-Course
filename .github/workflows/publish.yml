@@ -31,6 +31,8 @@ jobs:
           quarto install tinytex
           cd WebBook
           quarto render
+          cd WebLectures
+          quarto render
 
       ## Always deploy to version directory
       - name: Deploy quarto book
@@ -41,7 +43,14 @@ jobs:
           destination_dir: book    # The dest dir is identified by branch 
           publish_dir: WebBook/_book
   
-
+      - name: Deploy quarto lectures
+        uses: peaceiris/actions-gh-pages@v3
+        
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          destination_dir: lectures    # The dest dir is identified by branch 
+          publish_dir: WebLectures/_lectures
+ 
       # Set up quarto in the render environment, not here
       # - name: Set up Quarto
       #   uses: quarto-dev/quarto-actions/setup@v2

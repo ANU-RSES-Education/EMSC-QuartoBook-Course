@@ -20,6 +20,7 @@ book:
     - Notebooks/TestNB1.ipynb
     - Notebooks/TestQMD_NB1.qmd
 
+
 bibliography: references.bib
 
 format:

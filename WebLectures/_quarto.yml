@@ -1,0 +1,28 @@
+project:
+  type: default
+  output-dir: _lectures
+
+
+# default:
+#   date: "06/03/2024"
+
+
+
+# bibliography: references.bib
+
+format:
+  insper-revealjs:
+    logo: ANU-logo.jpg
+    self-contained: true
+    footer: |
+      ANU Course Notes: RSES Quarto     
+    code-links:
+      - text: Open in Binder
+        icon: rocket-takeoff
+        href: https://mybinder.org/v2/gh/ANU-RSES-Education/EMSC-QuartoBook/HEAD?labpath=WebBook/Notebooks%2FBinderLandingPage.qmd
+    other-links:
+      - text: Github Repository
+        icon: github
+        href: https://github.com/ANU-RSES-Education/EMSC-QuartoBook
+  
+ 

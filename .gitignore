@@ -2,8 +2,10 @@
 **/.ipynb_checkpoints
 
 WebBook/_book/
-WebLectures/*_files/
+WebLectures/_lectures/
 
 **/.quarto/
 WebBook/.quarto/_freeze/*
 WebBook/.quarto/*
+
+WebLectures/.quarto/*
