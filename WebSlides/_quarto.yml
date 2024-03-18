@@ -1,18 +1,10 @@
 project:
   type: default
-  output-dir: _lectures
-
-
-# default:
-#   date: "06/03/2024"
-
-
-
-# bibliography: references.bib
+  output-dir: ../_build/_slides
 
 format:
   insper-revealjs:
-    logo: ANU-logo.jpg
+    logo: Images/ANU-logo.jpg
     self-contained: true
     footer: |
       ANU Course Notes: RSES Quarto     

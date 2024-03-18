@@ -32,7 +32,7 @@ jobs:
           cd WebBook
           quarto render
           cd ..
-          cd WebLectures
+          cd WebSlides
           quarto render
 
       ## Always deploy to version directory
@@ -50,7 +50,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           destination_dir: lectures    # The dest dir is identified by branch 
-          publish_dir: WebLectures/_lectures
+          publish_dir: WebSlides/_slides
  
       # Set up quarto in the render environment, not here
       # - name: Set up Quarto
