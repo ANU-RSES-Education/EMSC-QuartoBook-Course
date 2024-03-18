@@ -25,7 +25,7 @@ jobs:
           cache-environment: true
           post-cleanup: 'all'
 
-      - name: Build docs with jupyterbook
+      - name: Render docs with quarto
         shell: bash -l {0}
         run: |
           quarto install tinytex
@@ -41,25 +41,14 @@ jobs:
         
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          destination_dir: book    # The dest dir is identified by branch 
-          publish_dir: WebBook/_book
+          # destination_dir: book    # The dest dir is identified by branch 
+          publish_dir: _build
   
-      - name: Deploy quarto lectures
-        uses: peaceiris/actions-gh-pages@v3
+      # - name: Deploy quarto lectures
+      #   uses: peaceiris/actions-gh-pages@v3
         
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          destination_dir: lectures    # The dest dir is identified by branch 
-          publish_dir: WebSlides/_slides
- 
-      # Set up quarto in the render environment, not here
-      # - name: Set up Quarto
-      #   uses: quarto-dev/quarto-actions/setup@v2
-
-      # - name: Render and Publish
-      #   uses: quarto-dev/quarto-actions/publish@v2
       #   with:
-      #     target: gh-pages
-      #     path: WebBook
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     destination_dir: lectures    # The dest dir is identified by branch 
+      #     publish_dir: WebSlides/_slides
+ 
