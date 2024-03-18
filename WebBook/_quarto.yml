@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: ../_build/_book
+  output-dir: ../_build/book
 
 book:
   title: "EMSC Quarto"

@@ -3,12 +3,15 @@
 ```{=html}
 <!-- Embed a presentation from this site -->
 <center>
-<iframe width="500" 
-        height="350" 
-        src="../../_slides/Present1.html"
+<iframe width="750" 
+        height="500" 
+        src="../../slides/Present1.html"
         title="Slideshow example 1">
 </iframe>
 </center>
 ```
 
-[Link to index of presentations](../../_slides/index.html)
+
+
+
+[Link to index of presentations](../../slides/index.html)
