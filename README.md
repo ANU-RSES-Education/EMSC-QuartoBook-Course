@@ -12,6 +12,13 @@ jupyter:
     name: python3
 ---
 
-```python
-Notes ... 
-```
+## Template repository for EMSC quantitative courses
+
+This repository is a Github template for EMSC quantitative courses. It contains a Quarto book template which is integrated with pyodide (web-browswer python) and a jupyter-lite instance. The Quarto Book can build and embed slideshows created with `reveal-md`
+
+More information for each of these components can be found here:
+
+- [Quarto Book Template]() # The quarto website
+- [Pyodide Integration]() # The quarto-live documentation
+- [Revealmd](https://revealjs.com/) # The reveal-md documentation
+- [Jupyter-Lite Instance](https://jupyterlite.readthedocs.io/en/latest/) # the jupyter-lite documentation

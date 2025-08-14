@@ -14,8 +14,8 @@ book:
         - intro.qmd
     - part: "Details"
       chapters:
-      - summary.qmd
-      - references.qmd
+        - summary.qmd
+        - references.qmd
 
     - part: "Slides"
       chapters:
@@ -38,7 +38,6 @@ book:
     background: "white"
     # foreground: "#C58812" # ANU honey colour
 
-
 bibliography: references.bib
 
 format:
@@ -54,9 +53,15 @@ format:
       - text: Github Repository
         icon: github
         href: https://github.com/ANU-RSES-Education/EMSC-QuartoBook
-  
+
   pdf:
     documentclass: scrreprt
 
-
-
+pyodide:
+  packages:
+    - micropip
+    - netcdf4
+    - xarray
+    - pydap
+    - jinja2
+    - ssl
