@@ -44,14 +44,7 @@ ipyleaflet
 plotly>=5,<6
 bqplot
 
-pyodide:
-  packages:
-    - micropip
-    - netcdf4
-    - xarray
-    - pydap
-    - jinja2
-    - ssl
-
-  # pdf:
-  #   documentclass: scrreprt
+# Earth science libraries not requested above (likely this should match the content of _quarto.yml in the WebBook)
+xarray
+pydap
+owslib
