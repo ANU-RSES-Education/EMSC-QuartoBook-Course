@@ -13,9 +13,9 @@
   {
     "objectID": "intro.html",
     "href": "intro.html",
-    "title": "2  Introduction",
+    "title": "Introduction",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
       "Introduction",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
@@ -24,7 +24,7 @@
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "3  Summary",
+    "title": "Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.",
     "crumbs": [
@@ -81,7 +81,7 @@
     "href": "Notebooks/TestQMD_NB1.html",
     "title": "Appendix B — Quarto MD notebook",
     "section": "",
-    "text": "for i in range(0,10):\n    print(i+1)\n\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+    "text": "for i in range(0,10):\n    print(i+1)",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto MD notebook</span>"
