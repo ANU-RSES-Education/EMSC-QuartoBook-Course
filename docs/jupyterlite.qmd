@@ -1,0 +1,64 @@
+---
+title: "JupyterLite"
+---
+
+JupyterLite provides a full Jupyter environment running entirely in the browser - no server required!
+
+## What is JupyterLite?
+
+A WebAssembly-powered Jupyter running in your browser:
+- Full Python environment
+- Jupyter notebook and lab interface
+- File system in browser storage
+- No installation needed
+
+## Structure
+
+```
+jupyterlite/
+├── content/         # Notebooks to include
+├── requirements.txt # Python packages
+└── jupyter-lite.config.json
+```
+
+## Adding Notebooks
+
+Place `.ipynb` files in `jupyterlite/content/`:
+
+```bash
+cp MyNotebook.ipynb jupyterlite/content/
+```
+
+They'll be available in the JupyterLite file browser.
+
+## Python Packages
+
+Edit `jupyterlite/requirements.txt`:
+
+```
+numpy
+matplotlib
+pandas
+```
+
+Rebuild after changes:
+
+```bash
+cd jupyterlite
+jupyter lite build --contents content --output-dir dist
+```
+
+## Accessing
+
+After deployment, JupyterLite is available at:
+```
+https://your-site.github.io/your-repo/jupyterlite/
+```
+
+## Limitations
+
+- Only packages available in Pyodide
+- Limited to ~100MB data
+- No system access
+- Persistent storage in browser only
+```

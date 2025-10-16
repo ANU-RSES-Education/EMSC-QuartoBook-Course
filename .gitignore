@@ -13,3 +13,16 @@ WebBook/.quarto/_freeze/*
 WebBook/.quarto/*
 
 WebSlides/.quarto/*
+
+# pixi environments
+.pixi
+*.egg-info
+
+## If you run jupyter-lite locally, it can mess up the github deployment if you leave these in place
+#
+**/.jupyterlite.doit.db
+_output
+**/.jupyter
+
+# Claude startup symlink
+CLAUDE

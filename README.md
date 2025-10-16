@@ -1,24 +1,109 @@
----
-jupyter:
-  jupytext:
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.16.1
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
----
+# EMSC Quarto Course Template
 
-## Template repository for EMSC quantitative courses
+A comprehensive GitHub template for creating interactive, web-based quantitative Earth Science courses.
 
-This repository is a Github template for EMSC quantitative courses. It contains a Quarto book template which is integrated with pyodide (web-browswer python) and a jupyter-lite instance. The Quarto Book can build and embed slideshows created with `reveal-md`
+## 📚 Features
 
-More information for each of these components can be found here:
+- **Quarto Book** - Beautiful, searchable course notes with live Python execution
+- **Reveal.js Slides** - Professional presentation slides embedded in your course
+- **JupyterLite** - Full Jupyter environment running in the browser
+- **Pyodide Integration** - Run Python code directly in web pages
+- **Automated Deployment** - Push to deploy via GitHub Actions
+- **Template Sync** - Automatically receive updates and improvements
 
-- [Quarto Book Template]() # The quarto website
-- [Pyodide Integration]() # The quarto-live documentation
-- [Revealmd](https://revealjs.com/) # The reveal-md documentation
-- [Jupyter-Lite Instance](https://jupyterlite.readthedocs.io/en/latest/) # the jupyter-lite documentation
+## 🚀 Quick Start
+
+### 1. Create Your Course
+
+Click **"Use this template"** above to create your own course repository.
+
+### 2. Read the Documentation
+
+**📖 [Full Documentation](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/)**
+
+The documentation covers:
+- [Getting Started Guide](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/getting-started.html)
+- [Configuration Options](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/configuration.html)
+- [Customization Guide](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/customization.html)
+- [Template Sync](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/template-sync.html)
+- [Troubleshooting](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/troubleshooting.html)
+
+### 3. Install Dependencies
+
+Using [Pixi](https://prefix.dev/docs/pixi/overview) (recommended):
+
+```bash
+pixi install
+pixi run quarto render WebBook
+```
+
+Or with Python/pip:
+
+```bash
+# Install Quarto from https://quarto.org
+pip install jupyterlite jupyterlite-pyodide-kernel ipython ipykernel
+quarto render WebBook
+```
+
+### 4. Customize Your Course
+
+1. Edit `WebBook/_quarto.yml` - Update title, author, and settings
+2. Add content to `WebBook/` - Create your lectures and materials
+3. Create slides in `WebSlides/` - Build presentations
+4. Push to deploy - GitHub Actions automatically builds and publishes
+
+## 📖 Examples
+
+Courses built with this template:
+
+- [EMSC-3022: Planetary Sciences](https://github.com/ANU-RSES-Education/EMSC-3022)
+- [Zero to Python for Earth Sciences](https://github.com/ANU-RSES-Education/Zero-2-Python-for-Earth-Sciences)
+
+## 🛠 Technology Stack
+
+- [Quarto](https://quarto.org/) - Scientific publishing system
+- [Pixi](https://prefix.dev/docs/pixi/overview) - Package manager
+- [JupyterLite](https://jupyterlite.readthedocs.io/) - Browser-based Jupyter
+- [Pyodide](https://pyodide.org/) - Python in WebAssembly
+- [Reveal.js](https://revealjs.com/) - HTML presentations
+- GitHub Actions - Automated deployment
+
+## 📝 Repository Structure
+
+```
+EMSC-QuartoBook-Course/
+├── docs/                    # Template documentation
+├── WebBook/                 # Course book content
+│   ├── _quarto.yml         # Book configuration
+│   ├── assets/             # Images, CSS, logos
+│   └── *.qmd               # Course pages
+├── WebSlides/              # Presentation slides
+├── jupyterlite/            # JupyterLite configuration
+├── .github/workflows/      # Automated build & deploy
+├── pixi.toml              # Environment configuration
+└── build.sh               # Local build script
+```
+
+## 🔄 Keeping Up to Date
+
+This template includes automatic synchronization:
+
+- **Automatic**: Monthly checks for template updates
+- **Manual**: Trigger sync anytime from Actions tab
+- **Safe**: Creates pull requests for review before merging
+
+See the [Template Sync documentation](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/template-sync.html) for details.
+
+## 💡 Getting Help
+
+- **Documentation**: [anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/)
+- **Issues**: [GitHub Issues](https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course/discussions)
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+## 🏛 Acknowledgments
+
+Developed by the [ANU Research School of Earth Sciences](https://earthsciences.anu.edu.au/)

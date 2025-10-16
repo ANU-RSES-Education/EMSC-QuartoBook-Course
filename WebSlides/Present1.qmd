@@ -4,9 +4,12 @@ author: Prof Diablo
 institute: 'Vatican City'
 date: '666-6-6'
 
+title-slide-attributes:
+  data-background-image: images/custom/anu_general.png
+  data-background-size: contain
 
 format:
-  insper-revealjs:
+  anu_slides-revealjs:
     logo: ANU-logo.jpg
     self-contained: true
     footer: |
@@ -47,4 +50,4 @@ jupyter:
 
 # In the evening
 
-... 
+...

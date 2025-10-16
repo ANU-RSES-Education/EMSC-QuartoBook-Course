@@ -4,9 +4,10 @@ project:
 
 book:
   title: "EMSC Quarto"
-  author: "Louis Moresi"
+  author:
+    - "Louis Moresi"
   date: "06/03/2024"
-  bread-crumbs: false
+  bread-crumbs: True
   chapters:
     - part: "Introduction"
       chapters:
@@ -40,22 +41,33 @@ book:
 
 bibliography: references.bib
 
-format:
-  html:
-    theme: flatly # united / simplex
-    linkcolor: "#C58812"
+execute:
+  enabled: false
 
-    code-links:
-      - text: Open in Binder
-        icon: rocket-takeoff
-        href: https://mybinder.org/v2/gh/ANU-RSES-Education/EMSC-QuartoBook/HEAD?labpath=WebBook/Notebooks%2FBinderLandingPage.qmd
+format:
+  live-html:
+    theme: [united, "assets/theme.scss"] # united / simplex / flatly
+    mainfont: "Jost"
+    fontsize: 0.9em
+    linestretch: 1.7
+    linkcolor: "#C58812"
+    number-sections: false
+    number-depth: 1
+    # filters:
+    #   - pyodide
+
+    # code-links:
+    #   - text: Open in Binder
+    #     icon: rocket-takeoff
+    #     href: https://mybinder.org/v2/gh/ANU-RSES-Education/EMSC-QuartoBook/HEAD?labpath=WebBook/Notebooks%2FBinderLandingPage.qmd
+
     other-links:
       - text: Github Repository
         icon: github
         href: https://github.com/ANU-RSES-Education/EMSC-QuartoBook
 
-  pdf:
-    documentclass: scrreprt
+  # pdf:
+  #   documentclass: scrreprt
 
 pyodide:
   packages:
@@ -65,3 +77,4 @@ pyodide:
     - pydap
     - jinja2
     - ssl
+    - owslib

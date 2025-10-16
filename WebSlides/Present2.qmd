@@ -3,6 +3,17 @@ title: Habits
 author: Louis Moresi
 date: "March, 2024"
 
+title-slide-attributes:
+  data-background-image: images/custom/anu_general.png
+  data-background-size: contain
+
+format:
+  anu_slides-revealjs:
+    logo: ANU-logo.jpg
+    self-contained: true
+    footer: |
+      Watch yourself, sonny !
+
 jupyter:
   jupytext:
     text_representation:
@@ -10,7 +21,7 @@ jupyter:
       format_name: quarto
       format_version: '1.0'
       jupytext_version: 1.16.1
-      
+
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
