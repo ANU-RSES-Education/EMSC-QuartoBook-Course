@@ -116,8 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./../WebBook/assets/ANU-logo.jpg" alt="" class="navbar-logo light-content">
-    <img src="./../WebBook/assets/ANU-logo.jpg" alt="" class="navbar-logo dark-content">
+    <img src="./ANU-logo.png" alt="" class="navbar-logo light-content">
+    <img src="./ANU-logo.png" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">EMSC Quarto Course Template</span>
@@ -268,6 +268,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Pyodide Integration</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./binder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Binder Integration</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -283,6 +289,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./template-sync.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Template Synchronization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./template-doctor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Template Doctor</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -313,6 +325,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#configuration" id="toc-configuration" class="nav-link" data-scroll-target="#configuration">Configuration</a></li>
   <li><a href="#usage-in-pages" id="toc-usage-in-pages" class="nav-link" data-scroll-target="#usage-in-pages">Usage in Pages</a></li>
   <li><a href="#available-packages" id="toc-available-packages" class="nav-link" data-scroll-target="#available-packages">Available Packages</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a>
+  <ul class="collapse">
+  <li><a href="#network-requests" id="toc-network-requests" class="nav-link" data-scroll-target="#network-requests">Network Requests</a></li>
+  <li><a href="#package-availability" id="toc-package-availability" class="nav-link" data-scroll-target="#package-availability">Package Availability</a></li>
+  <li><a href="#performance" id="toc-performance" class="nav-link" data-scroll-target="#performance">Performance</a></li>
+  <li><a href="#when-to-use-binder-instead" id="toc-when-to-use-binder-instead" class="nav-link" data-scroll-target="#when-to-use-binder-instead">When to Use Binder Instead</a></li>
+  </ul></li>
   <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">Best Practices</a></li>
   </ul>
 </nav>
@@ -377,13 +396,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Check <a href="https://pyodide.org/en/stable/usage/packages-in-pyodide.html">Pyodide packages</a> for what’s available.</p>
 <p>Common scientific packages: - numpy, scipy, pandas - matplotlib - scikit-learn - networkx</p>
 </section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<p>Pyodide has some important limitations to be aware of:</p>
+<section id="network-requests" class="level3">
+<h3 class="anchored" data-anchor-id="network-requests">Network Requests</h3>
+<ul>
+<li><strong>Limited HTTP access</strong>: CORS restrictions apply</li>
+<li><strong>No direct file downloads</strong>: Can’t fetch arbitrary URLs</li>
+<li><strong>Proxy requirements</strong>: Some APIs may not work</li>
+<li><strong>Workaround</strong>: Pre-load data or use Binder for network-intensive tasks</li>
+</ul>
+</section>
+<section id="package-availability" class="level3">
+<h3 class="anchored" data-anchor-id="package-availability">Package Availability</h3>
+<ul>
+<li>Only packages compiled for WebAssembly work</li>
+<li>Not all Python packages are available</li>
+<li>Check <a href="https://pyodide.org/en/stable/usage/packages-in-pyodide.html">Pyodide package list</a></li>
+</ul>
+</section>
+<section id="performance" class="level3">
+<h3 class="anchored" data-anchor-id="performance">Performance</h3>
+<ul>
+<li>Slower than native Python for heavy computation</li>
+<li>Limited memory (~2GB typically)</li>
+<li>Better for teaching than production analysis</li>
+</ul>
+</section>
+<section id="when-to-use-binder-instead" class="level3">
+<h3 class="anchored" data-anchor-id="when-to-use-binder-instead">When to Use Binder Instead</h3>
+<p>For complex tasks involving: - Large data downloads from the internet - API calls and web scraping - Packages not in Pyodide - Intensive computations</p>
+<p>See the <a href="./binder.html">Binder Integration</a> page for full-featured computing.</p>
+</section>
+</section>
 <section id="best-practices" class="level2">
 <h2 class="anchored" data-anchor-id="best-practices">Best Practices</h2>
 <ul>
 <li>Keep examples self-contained</li>
-<li>Use small datasets</li>
+<li>Use small, pre-loaded datasets</li>
 <li>Provide clear instructions</li>
 <li>Include expected output as reference</li>
+<li>For complex work, direct students to Binder</li>
 </ul>
 
 

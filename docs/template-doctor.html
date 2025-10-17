@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GitHub Actions – EMSC Quarto Course Template</title>
+<title>Template Doctor – EMSC Quarto Course Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -167,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template-sync.html">Maintenance</a></li><li class="breadcrumb-item"><a href="./github-actions.html">GitHub Actions</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template-sync.html">Maintenance</a></li><li class="breadcrumb-item"><a href="./template-doctor.html">Template Doctor</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -293,13 +293,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./template-doctor.html" class="sidebar-item-text sidebar-link">
+  <a href="./template-doctor.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Template Doctor</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./github-actions.html" class="sidebar-item-text sidebar-link active">
+  <a href="./github-actions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub Actions</span></a>
   </div>
 </li>
@@ -321,29 +321,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#workflows" id="toc-workflows" class="nav-link active" data-scroll-target="#workflows">Workflows</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#concept" id="toc-concept" class="nav-link" data-scroll-target="#concept">Concept</a></li>
+  <li><a href="#planned-features" id="toc-planned-features" class="nav-link" data-scroll-target="#planned-features">Planned Features</a>
   <ul class="collapse">
-  <li><a href="#publish-book-and-slides" id="toc-publish-book-and-slides" class="nav-link" data-scroll-target="#publish-book-and-slides">1. Publish Book and Slides</a></li>
-  <li><a href="#build-jupyterlite" id="toc-build-jupyterlite" class="nav-link" data-scroll-target="#build-jupyterlite">2. Build JupyterLite</a></li>
-  <li><a href="#template-sync" id="toc-template-sync" class="nav-link" data-scroll-target="#template-sync">3. Template Sync</a></li>
+  <li><a href="#version-checks" id="toc-version-checks" class="nav-link" data-scroll-target="#version-checks">Version Checks</a></li>
+  <li><a href="#extension-updates" id="toc-extension-updates" class="nav-link" data-scroll-target="#extension-updates">Extension Updates</a></li>
+  <li><a href="#configuration-audit" id="toc-configuration-audit" class="nav-link" data-scroll-target="#configuration-audit">Configuration Audit</a></li>
+  <li><a href="#template-diff" id="toc-template-diff" class="nav-link" data-scroll-target="#template-diff">Template Diff</a></li>
   </ul></li>
-  <li><a href="#deployment-process" id="toc-deployment-process" class="nav-link" data-scroll-target="#deployment-process">Deployment Process</a></li>
-  <li><a href="#configuration" id="toc-configuration" class="nav-link" data-scroll-target="#configuration">Configuration</a></li>
-  <li><a href="#customizing-workflows" id="toc-customizing-workflows" class="nav-link" data-scroll-target="#customizing-workflows">Customizing Workflows</a>
+  <li><a href="#quick-start---update-script-available" id="toc-quick-start---update-script-available" class="nav-link" data-scroll-target="#quick-start---update-script-available">Quick Start - Update Script Available!</a>
   <ul class="collapse">
-  <li><a href="#change-trigger" id="toc-change-trigger" class="nav-link" data-scroll-target="#change-trigger">Change Trigger</a></li>
-  <li><a href="#add-build-steps" id="toc-add-build-steps" class="nav-link" data-scroll-target="#add-build-steps">Add Build Steps</a></li>
+  <li><a href="#using-the-update-script" id="toc-using-the-update-script" class="nav-link" data-scroll-target="#using-the-update-script">Using the Update Script</a></li>
   </ul></li>
-  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
+  <li><a href="#implementation-status" id="toc-implementation-status" class="nav-link" data-scroll-target="#implementation-status">Implementation Status</a></li>
+  <li><a href="#contributing-ideas" id="toc-contributing-ideas" class="nav-link" data-scroll-target="#contributing-ideas">Contributing Ideas</a></li>
+  <li><a href="#workarounds-until-template-doctor-exists" id="toc-workarounds-until-template-doctor-exists" class="nav-link" data-scroll-target="#workarounds-until-template-doctor-exists">Workarounds Until Template Doctor Exists</a>
+  <ul class="collapse">
+  <li><a href="#manual-version-checking" id="toc-manual-version-checking" class="nav-link" data-scroll-target="#manual-version-checking">Manual Version Checking</a></li>
+  <li><a href="#manual-dependency-checking" id="toc-manual-dependency-checking" class="nav-link" data-scroll-target="#manual-dependency-checking">Manual Dependency Checking</a></li>
+  <li><a href="#manual-template-comparison" id="toc-manual-template-comparison" class="nav-link" data-scroll-target="#manual-template-comparison">Manual Template Comparison</a></li>
+  </ul></li>
+  <li><a href="#future-vision" id="toc-future-vision" class="nav-link" data-scroll-target="#future-vision">Future Vision</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template-sync.html">Maintenance</a></li><li class="breadcrumb-item"><a href="./github-actions.html">GitHub Actions</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template-sync.html">Maintenance</a></li><li class="breadcrumb-item"><a href="./template-doctor.html">Template Doctor</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">GitHub Actions</h1>
+<h1 class="title">Template Doctor</h1>
 </div>
 
 
@@ -360,60 +368,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The template uses GitHub Actions to automatically build and deploy your course whenever you push changes.</p>
-<section id="workflows" class="level2">
-<h2 class="anchored" data-anchor-id="workflows">Workflows</h2>
-<section id="publish-book-and-slides" class="level3">
-<h3 class="anchored" data-anchor-id="publish-book-and-slides">1. Publish Book and Slides</h3>
-<p><strong>File</strong>: <code>.github/workflows/publish.yml</code></p>
-<p>Triggers on push to main branch: - Builds WebBook - Builds WebSlides - Deploys to GitHub Pages</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The Template Doctor is a planned diagnostic tool to help you keep your course repository up-to-date with the latest template improvements, extensions, and best practices.</p>
 </section>
-<section id="build-jupyterlite" class="level3">
-<h3 class="anchored" data-anchor-id="build-jupyterlite">2. Build JupyterLite</h3>
-<p><strong>File</strong>: <code>.github/workflows/jupyterlite.yml</code></p>
-<p>Builds and deploys JupyterLite separately.</p>
-</section>
-<section id="template-sync" class="level3">
-<h3 class="anchored" data-anchor-id="template-sync">3. Template Sync</h3>
-<p><strong>File</strong>: <code>.github/workflows/template-sync.yml</code></p>
-<p>Monthly check for template updates.</p>
-</section>
-</section>
-<section id="deployment-process" class="level2">
-<h2 class="anchored" data-anchor-id="deployment-process">Deployment Process</h2>
+<section id="concept" class="level2">
+<h2 class="anchored" data-anchor-id="concept">Concept</h2>
+<p>A script you can run locally to check:</p>
 <ol type="1">
-<li>Push to main branch</li>
-<li>GitHub Actions triggered</li>
-<li>Environment set up (Quarto, Python)</li>
-<li>Content rendered</li>
-<li>Deployed to <code>gh-pages</code> branch</li>
-<li>Available at <code>https://username.github.io/repo/</code></li>
+<li><strong>Extension versions</strong> - Are pyodide, jupyterlite, and other Quarto extensions current?</li>
+<li><strong>Configuration drift</strong> - Has your setup diverged significantly from template best practices?</li>
+<li><strong>Dependency updates</strong> - Are there newer versions of packages available?</li>
+<li><strong>Template improvements</strong> - What new features are available in the template?</li>
 </ol>
 </section>
-<section id="configuration" class="level2">
-<h2 class="anchored" data-anchor-id="configuration">Configuration</h2>
-<p>Enable GitHub Pages: 1. Settings &gt; Pages 2. Source: “GitHub Actions”</p>
+<section id="planned-features" class="level2">
+<h2 class="anchored" data-anchor-id="planned-features">Planned Features</h2>
+<section id="version-checks" class="level3">
+<h3 class="anchored" data-anchor-id="version-checks">Version Checks</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./template-doctor.sh</span> <span class="at">--check-versions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Would report:</p>
+<pre><code>Checking template components...
+✓ Quarto: 1.6.42 (current)
+⚠ JupyterLite: 0.5.1 (0.6.0 available)
+✓ Pyodide extension: current
+⚠ r-wasm extension: update available</code></pre>
 </section>
-<section id="customizing-workflows" class="level2">
-<h2 class="anchored" data-anchor-id="customizing-workflows">Customizing Workflows</h2>
-<section id="change-trigger" class="level3">
-<h3 class="anchored" data-anchor-id="change-trigger">Change Trigger</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> main</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> develop</span><span class="co">  # Also trigger on develop</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="extension-updates" class="level3">
+<h3 class="anchored" data-anchor-id="extension-updates">Extension Updates</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./template-doctor.sh</span> <span class="at">--update-extensions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Would: - Check for extension updates - Optionally update them - Test that updates don’t break your build</p>
 </section>
-<section id="add-build-steps" class="level3">
-<h3 class="anchored" data-anchor-id="add-build-steps">Add Build Steps</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run tests</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">  run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    pytest tests/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="configuration-audit" class="level3">
+<h3 class="anchored" data-anchor-id="configuration-audit">Configuration Audit</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./template-doctor.sh</span> <span class="at">--audit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Would check: - Are all recommended dependencies in <code>pixi.toml</code>? - Is <code>.gitignore</code> properly configured? - Are GitHub Actions up to date? - Are there template improvements you haven’t adopted?</p>
+</section>
+<section id="template-diff" class="level3">
+<h3 class="anchored" data-anchor-id="template-diff">Template Diff</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./template-doctor.sh</span> <span class="at">--diff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Would show: - What has changed in the template since you created your repo - Categorized by: critical, recommended, optional - Helps you decide what to merge from template-sync PRs</p>
 </section>
 </section>
-<section id="troubleshooting" class="level2">
-<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
-<p>See <a href="./troubleshooting.html">Troubleshooting</a> for common issues.</p>
+<section id="quick-start---update-script-available" class="level2">
+<h2 class="anchored" data-anchor-id="quick-start---update-script-available">Quick Start - Update Script Available!</h2>
+<p>We’ve implemented a basic update script you can use now:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./update-template.sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This script will: - Check and update Quarto extensions (r-wasm/live for pyodide) - Update Python packages via pixi - Rebuild JupyterLite if needed - Check for template updates - Run a test build</p>
+<section id="using-the-update-script" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-update-script">Using the Update Script</h3>
+<p>From your course repository root:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make it executable (first time only)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x update-template.sh</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the update check</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./update-template.sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The script is interactive and will prompt you before making changes.</p>
+</section>
+</section>
+<section id="implementation-status" class="level2">
+<h2 class="anchored" data-anchor-id="implementation-status">Implementation Status</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Basic Version Now Available!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A working update script (<code>update-template.sh</code>) is now included in the template. It handles:</p>
+<p><strong>Current Implementation: Bash Script</strong> ✓ - Simple, runs anywhere - Interactive prompts - Handles common update tasks - Safe (asks before changes)</p>
+<p><strong>Future Enhancements:</strong> - More automated checking - YAML/TOML parsing for drift detection - Integration with GitHub Actions - Automatic version comparison</p>
+</div>
+</div>
+</section>
+<section id="contributing-ideas" class="level2">
+<h2 class="anchored" data-anchor-id="contributing-ideas">Contributing Ideas</h2>
+<p>If you have ideas for what the Template Doctor should check or how it should work, please:</p>
+<ol type="1">
+<li>Open an issue on the <a href="https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course/issues">template repository</a></li>
+<li>Share your use cases</li>
+<li>Suggest checks that would be helpful</li>
+</ol>
+</section>
+<section id="workarounds-until-template-doctor-exists" class="level2">
+<h2 class="anchored" data-anchor-id="workarounds-until-template-doctor-exists">Workarounds Until Template Doctor Exists</h2>
+<section id="manual-version-checking" class="level3">
+<h3 class="anchored" data-anchor-id="manual-version-checking">Manual Version Checking</h3>
+<p>Check Quarto extensions:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> WebBook</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> list extensions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Check for extension updates:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> update extensions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="manual-dependency-checking" class="level3">
+<h3 class="anchored" data-anchor-id="manual-dependency-checking">Manual Dependency Checking</h3>
+<p>Compare your <code>pixi.toml</code> with the template:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In your course repo</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> pixi.toml path/to/template/pixi.toml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="manual-template-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="manual-template-comparison">Manual Template Comparison</h3>
+<p>Set template as remote to compare:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add template https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course.git</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch template</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff main template/main <span class="at">--</span> .github/workflows/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="future-vision" class="level2">
+<h2 class="anchored" data-anchor-id="future-vision">Future Vision</h2>
+<p>Ideally, Template Doctor would be:</p>
+<ol type="1">
+<li><strong>Automatic</strong> - Runs as part of CI/CD</li>
+<li><strong>Smart</strong> - Understands which changes matter for your course</li>
+<li><strong>Helpful</strong> - Provides actionable suggestions</li>
+<li><strong>Safe</strong> - Never overwrites without permission</li>
+</ol>
+<p>Example workflow:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In .github/workflows/template-doctor.yml</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run Template Doctor</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">  run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    ./template-doctor.sh --check-all --report</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Comment on PR</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">if</span><span class="kw">:</span><span class="at"> github.event_name == 'pull_request'</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">  run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    # Post Template Doctor findings as PR comment</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This would give you automatic health checks on every PR.</p>
 
 
 </section>

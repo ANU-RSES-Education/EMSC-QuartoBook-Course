@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>GitHub Actions – EMSC Quarto Course Template</title>
+<title>Binder Integration – EMSC Quarto Course Template</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -167,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template-sync.html">Maintenance</a></li><li class="breadcrumb-item"><a href="./github-actions.html">GitHub Actions</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./webbook.html">Features</a></li><li class="breadcrumb-item"><a href="./binder.html">Binder Integration</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./binder.html" class="sidebar-item-text sidebar-link">
+  <a href="./binder.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Binder Integration</span></a>
   </div>
 </li>
@@ -299,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./github-actions.html" class="sidebar-item-text sidebar-link active">
+  <a href="./github-actions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub Actions</span></a>
   </div>
 </li>
@@ -321,29 +321,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#workflows" id="toc-workflows" class="nav-link active" data-scroll-target="#workflows">Workflows</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#what-is-binder" id="toc-what-is-binder" class="nav-link" data-scroll-target="#what-is-binder">What is Binder?</a></li>
+  <li><a href="#basic-binder-setup" id="toc-basic-binder-setup" class="nav-link" data-scroll-target="#basic-binder-setup">Basic Binder Setup</a>
   <ul class="collapse">
-  <li><a href="#publish-book-and-slides" id="toc-publish-book-and-slides" class="nav-link" data-scroll-target="#publish-book-and-slides">1. Publish Book and Slides</a></li>
-  <li><a href="#build-jupyterlite" id="toc-build-jupyterlite" class="nav-link" data-scroll-target="#build-jupyterlite">2. Build JupyterLite</a></li>
-  <li><a href="#template-sync" id="toc-template-sync" class="nav-link" data-scroll-target="#template-sync">3. Template Sync</a></li>
+  <li><a href="#configure-your-repository" id="toc-configure-your-repository" class="nav-link" data-scroll-target="#configure-your-repository">1. Configure Your Repository</a></li>
+  <li><a href="#add-a-binder-badge" id="toc-add-a-binder-badge" class="nav-link" data-scroll-target="#add-a-binder-badge">2. Add a Binder Badge</a></li>
+  <li><a href="#link-from-your-course" id="toc-link-from-your-course" class="nav-link" data-scroll-target="#link-from-your-course">3. Link from Your Course</a></li>
   </ul></li>
-  <li><a href="#deployment-process" id="toc-deployment-process" class="nav-link" data-scroll-target="#deployment-process">Deployment Process</a></li>
-  <li><a href="#configuration" id="toc-configuration" class="nav-link" data-scroll-target="#configuration">Configuration</a></li>
-  <li><a href="#customizing-workflows" id="toc-customizing-workflows" class="nav-link" data-scroll-target="#customizing-workflows">Customizing Workflows</a>
+  <li><a href="#paired-repository-strategy-recommended-for-rses" id="toc-paired-repository-strategy-recommended-for-rses" class="nav-link" data-scroll-target="#paired-repository-strategy-recommended-for-rses">Paired Repository Strategy (Recommended for RSES)</a>
   <ul class="collapse">
-  <li><a href="#change-trigger" id="toc-change-trigger" class="nav-link" data-scroll-target="#change-trigger">Change Trigger</a></li>
-  <li><a href="#add-build-steps" id="toc-add-build-steps" class="nav-link" data-scroll-target="#add-build-steps">Add Build Steps</a></li>
+  <li><a href="#the-strategy" id="toc-the-strategy" class="nav-link" data-scroll-target="#the-strategy">The Strategy</a></li>
+  <li><a href="#benefits" id="toc-benefits" class="nav-link" data-scroll-target="#benefits">Benefits</a></li>
+  <li><a href="#setting-up-a-paired-repository" id="toc-setting-up-a-paired-repository" class="nav-link" data-scroll-target="#setting-up-a-paired-repository">Setting Up a Paired Repository</a></li>
   </ul></li>
-  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
+  <li><a href="#automation-considerations" id="toc-automation-considerations" class="nav-link" data-scroll-target="#automation-considerations">Automation Considerations</a></li>
+  <li><a href="#when-to-use-what" id="toc-when-to-use-what" class="nav-link" data-scroll-target="#when-to-use-what">When to Use What</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices">Best Practices</a>
+  <ul class="collapse">
+  <li><a href="#for-simple-interactive-examples" id="toc-for-simple-interactive-examples" class="nav-link" data-scroll-target="#for-simple-interactive-examples">For Simple Interactive Examples</a></li>
+  <li><a href="#for-real-data-analysis" id="toc-for-real-data-analysis" class="nav-link" data-scroll-target="#for-real-data-analysis">For Real Data Analysis</a></li>
+  <li><a href="#hybrid-approach" id="toc-hybrid-approach" class="nav-link" data-scroll-target="#hybrid-approach">Hybrid Approach</a></li>
+  </ul></li>
+  <li><a href="#example-workflow" id="toc-example-workflow" class="nav-link" data-scroll-target="#example-workflow">Example Workflow</a></li>
+  <li><a href="#troubleshooting-binder" id="toc-troubleshooting-binder" class="nav-link" data-scroll-target="#troubleshooting-binder">Troubleshooting Binder</a>
+  <ul class="collapse">
+  <li><a href="#build-fails" id="toc-build-fails" class="nav-link" data-scroll-target="#build-fails">Build Fails</a></li>
+  <li><a href="#slow-to-start" id="toc-slow-to-start" class="nav-link" data-scroll-target="#slow-to-start">Slow to Start</a></li>
+  <li><a href="#session-died" id="toc-session-died" class="nav-link" data-scroll-target="#session-died">Session Died</a></li>
+  </ul></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./template-sync.html">Maintenance</a></li><li class="breadcrumb-item"><a href="./github-actions.html">GitHub Actions</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./webbook.html">Features</a></li><li class="breadcrumb-item"><a href="./binder.html">Binder Integration</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">GitHub Actions</h1>
+<h1 class="title">Binder Integration</h1>
 </div>
 
 
@@ -360,60 +376,321 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The template uses GitHub Actions to automatically build and deploy your course whenever you push changes.</p>
-<section id="workflows" class="level2">
-<h2 class="anchored" data-anchor-id="workflows">Workflows</h2>
-<section id="publish-book-and-slides" class="level3">
-<h3 class="anchored" data-anchor-id="publish-book-and-slides">1. Publish Book and Slides</h3>
-<p><strong>File</strong>: <code>.github/workflows/publish.yml</code></p>
-<p>Triggers on push to main branch: - Builds WebBook - Builds WebSlides - Deploys to GitHub Pages</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>While Pyodide and JupyterLite are excellent for simple interactive code examples, they have limitations when it comes to:</p>
+<ul>
+<li>Complex network requests and API calls</li>
+<li>Large data downloads</li>
+<li>Packages not available in Pyodide</li>
+<li>Computationally intensive operations</li>
+<li>File system operations</li>
+</ul>
+<p>For these use cases, <a href="https://mybinder.org/">Binder</a> provides a full-featured computing environment running on cloud servers.</p>
 </section>
-<section id="build-jupyterlite" class="level3">
-<h3 class="anchored" data-anchor-id="build-jupyterlite">2. Build JupyterLite</h3>
-<p><strong>File</strong>: <code>.github/workflows/jupyterlite.yml</code></p>
-<p>Builds and deploys JupyterLite separately.</p>
+<section id="what-is-binder" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-binder">What is Binder?</h2>
+<p>Binder creates a live, executable environment from a GitHub repository. When students click a Binder link, they get:</p>
+<ul>
+<li>Full Jupyter Lab environment</li>
+<li>Complete Python package ecosystem</li>
+<li>Network access for data downloads</li>
+<li>Persistent sessions (while active)</li>
+<li>Real file system</li>
+<li>More computational resources</li>
+</ul>
 </section>
-<section id="template-sync" class="level3">
-<h3 class="anchored" data-anchor-id="template-sync">3. Template Sync</h3>
-<p><strong>File</strong>: <code>.github/workflows/template-sync.yml</code></p>
-<p>Monthly check for template updates.</p>
+<section id="basic-binder-setup" class="level2">
+<h2 class="anchored" data-anchor-id="basic-binder-setup">Basic Binder Setup</h2>
+<section id="configure-your-repository" class="level3">
+<h3 class="anchored" data-anchor-id="configure-your-repository">1. Configure Your Repository</h3>
+<p>Binder reads configuration from your repository root. Create an <code>environment.yml</code> file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> emsc-course</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.11</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> jupyter</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> numpy</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> matplotlib</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> xarray</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> netcdf4</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pip</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">pip</span><span class="kw">:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> some-pip-only-package</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    # Add any pip-only packages here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This approach uses conda for most packages (faster, better dependency resolution) and pip only for packages not available in conda-forge.</p>
+</section>
+<section id="add-a-binder-badge" class="level3">
+<h3 class="anchored" data-anchor-id="add-a-binder-badge">2. Add a Binder Badge</h3>
+<p>Add to your README.md:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Binder](https://mybinder.org/badge_logo.svg)</span><span class="co">](https://mybinder.org/v2/gh/ANU-RSES-Education/YOUR-REPO/HEAD)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Replace <code>YOUR-REPO</code> with your repository name.</p>
+</section>
+<section id="link-from-your-course" class="level3">
+<h3 class="anchored" data-anchor-id="link-from-your-course">3. Link from Your Course</h3>
+<p>In your Quarto book, add a link to Binder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In WebBook/_quarto.yml</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">live-html</span><span class="kw">:</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-links</span><span class="kw">:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Open in Binder</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> rocket-takeoff</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://mybinder.org/v2/gh/ANU-RSES-Education/YOUR-REPO/HEAD</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="deployment-process" class="level2">
-<h2 class="anchored" data-anchor-id="deployment-process">Deployment Process</h2>
+<section id="paired-repository-strategy-recommended-for-rses" class="level2">
+<h2 class="anchored" data-anchor-id="paired-repository-strategy-recommended-for-rses">Paired Repository Strategy (Recommended for RSES)</h2>
+<p>For complex courses, we recommend a <strong>paired repository approach</strong>:</p>
+<section id="the-strategy" class="level3">
+<h3 class="anchored" data-anchor-id="the-strategy">The Strategy</h3>
 <ol type="1">
-<li>Push to main branch</li>
-<li>GitHub Actions triggered</li>
-<li>Environment set up (Quarto, Python)</li>
-<li>Content rendered</li>
-<li>Deployed to <code>gh-pages</code> branch</li>
-<li>Available at <code>https://username.github.io/repo/</code></li>
+<li><strong>Main Course Repository</strong> (e.g., <code>EMSC-4033</code>)
+<ul>
+<li>Contains course book, slides, and content</li>
+<li>Built website deployed to GitHub Pages</li>
+<li>Lightweight for fast builds</li>
+</ul></li>
+<li><strong>Binder Companion Repository</strong> (e.g., <code>EMSC-4033-Binder</code>)
+<ul>
+<li>Dedicated to Binder environment</li>
+<li>Syncs notebooks and data from main repository</li>
+<li>Contains all heavy dependencies</li>
+<li>Optimized for interactive computing</li>
+</ul></li>
 </ol>
 </section>
-<section id="configuration" class="level2">
-<h2 class="anchored" data-anchor-id="configuration">Configuration</h2>
-<p>Enable GitHub Pages: 1. Settings &gt; Pages 2. Source: “GitHub Actions”</p>
+<section id="benefits" class="level3">
+<h3 class="anchored" data-anchor-id="benefits">Benefits</h3>
+<ul>
+<li><strong>Faster main repo builds</strong> - No heavy Binder dependencies</li>
+<li><strong>Flexible environment</strong> - Can install anything needed</li>
+<li><strong>Better caching</strong> - Binder builds are cached separately</li>
+<li><strong>Cleaner separation</strong> - Content vs.&nbsp;compute environment</li>
+</ul>
 </section>
-<section id="customizing-workflows" class="level2">
-<h2 class="anchored" data-anchor-id="customizing-workflows">Customizing Workflows</h2>
-<section id="change-trigger" class="level3">
-<h3 class="anchored" data-anchor-id="change-trigger">Change Trigger</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> main</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> develop</span><span class="co">  # Also trigger on develop</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="setting-up-a-paired-repository" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-a-paired-repository">Setting Up a Paired Repository</h3>
+<section id="step-1-create-binder-repository" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-create-binder-repository">Step 1: Create Binder Repository</h4>
+<p>Create a new repository: <code>YOUR-COURSE-NAME-Binder</code></p>
 </section>
-<section id="add-build-steps" class="level3">
-<h3 class="anchored" data-anchor-id="add-build-steps">Add Build Steps</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run tests</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">  run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    pytest tests/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="step-2-configure-to-pull-from-main-repo" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-configure-to-pull-from-main-repo">Step 2: Configure to Pull From Main Repo</h4>
+<p>Create <code>.binder/postBuild</code> script:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone the main course repository</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ANU-RSES-Education/YOUR-COURSE-NAME.git course-content</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy notebooks to working directory</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> course-content/WebBook/Notebooks/<span class="pp">*</span> notebooks/</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy any data files</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-d</span> <span class="st">"course-content/WebBook/Data"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cp</span> <span class="at">-r</span> course-content/WebBook/Data ./</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Course content loaded successfully"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Make it executable:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x .binder/postBuild</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-3-create-environment.yml" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-create-environment.yml">Step 3: Create environment.yml</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> emsc-binder</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">channels</span><span class="kw">:</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> conda-forge</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> python=3.11</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> jupyter</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> jupyterlab&gt;=4.0</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> numpy</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> matplotlib</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> pandas</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> cartopy</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> xarray</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> netcdf4</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> requests</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> beautifulsoup4</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">  # Add any packages you need</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-4-add-start.sh-optional" class="level4">
+<h4 class="anchored" data-anchor-id="step-4-add-start.sh-optional">Step 4: Add start.sh (optional)</h4>
+<p>Create a startup script that opens a specific notebook:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">exec</span> jupyter lab notebooks/Welcome.ipynb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="step-5-link-from-main-repository" class="level4">
+<h4 class="anchored" data-anchor-id="step-5-link-from-main-repository">Step 5: Link from Main Repository</h4>
+<p>In your main course’s <code>_quarto.yml</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">code-links</span><span class="kw">:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Open in Binder</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> rocket-takeoff</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://mybinder.org/v2/gh/ANU-RSES-Education/YOUR-COURSE-NAME-Binder/HEAD</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="troubleshooting" class="level2">
-<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
-<p>See <a href="./troubleshooting.html">Troubleshooting</a> for common issues.</p>
+</section>
+<section id="automation-considerations" class="level2">
+<h2 class="anchored" data-anchor-id="automation-considerations">Automation Considerations</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Future Development
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Automating the Binder repository sync is on our roadmap. Potential approaches:</p>
+<ol type="1">
+<li><strong>GitHub Actions</strong> - Trigger on main repo push to update Binder repo</li>
+<li><strong>Git Submodules</strong> - Link main repo as submodule</li>
+<li><strong>Dynamic fetching</strong> - postBuild always pulls latest from main</li>
+</ol>
+<p>This requires careful design to avoid circular dependencies and ensure reliable builds.</p>
+</div>
+</div>
+</section>
+<section id="when-to-use-what" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-what">When to Use What</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 55%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Pyodide/JupyterLite</th>
+<th>Binder</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Setup</strong></td>
+<td>None required</td>
+<td>Click link, wait ~30s</td>
+</tr>
+<tr class="even">
+<td><strong>Speed</strong></td>
+<td>Instant</td>
+<td>Initial build delay</td>
+</tr>
+<tr class="odd">
+<td><strong>Packages</strong></td>
+<td>Limited to Pyodide</td>
+<td>Full Python ecosystem</td>
+</tr>
+<tr class="even">
+<td><strong>Data</strong></td>
+<td>Small (&lt;10MB)</td>
+<td>Large datasets OK</td>
+</tr>
+<tr class="odd">
+<td><strong>Network</strong></td>
+<td>Limited/proxied</td>
+<td>Full access</td>
+</tr>
+<tr class="even">
+<td><strong>Persistence</strong></td>
+<td>Browser only</td>
+<td>Session (few hours)</td>
+</tr>
+<tr class="odd">
+<td><strong>Best for</strong></td>
+<td>Simple examples, teaching basics</td>
+<td>Complex analysis, real research</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="best-practices" class="level2">
+<h2 class="anchored" data-anchor-id="best-practices">Best Practices</h2>
+<section id="for-simple-interactive-examples" class="level3">
+<h3 class="anchored" data-anchor-id="for-simple-interactive-examples">For Simple Interactive Examples</h3>
+<ul>
+<li>Use Pyodide in course pages</li>
+<li>Great for teaching syntax and concepts</li>
+<li>Students can experiment immediately</li>
+</ul>
+</section>
+<section id="for-real-data-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="for-real-data-analysis">For Real Data Analysis</h3>
+<ul>
+<li>Provide Binder link</li>
+<li>Include clear instructions</li>
+<li>Pre-load data in Binder environment</li>
+<li>Give realistic expectations (build time)</li>
+</ul>
+</section>
+<section id="hybrid-approach" class="level3">
+<h3 class="anchored" data-anchor-id="hybrid-approach">Hybrid Approach</h3>
+<ul>
+<li>Start with Pyodide for basics</li>
+<li>Progress to Binder for applied work</li>
+<li>Show same concepts in both environments</li>
+</ul>
+</section>
+</section>
+<section id="example-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="example-workflow">Example Workflow</h2>
+<ol type="1">
+<li><strong>Week 1-3</strong>: Basic Python with Pyodide
+<ul>
+<li>Variables, loops, functions</li>
+<li>Simple plotting</li>
+<li>No setup required</li>
+</ul></li>
+<li><strong>Week 4-6</strong>: Introduce Binder
+<ul>
+<li>“For the next exercise, click the Binder link”</li>
+<li>Work with real datasets</li>
+<li>More complex libraries</li>
+</ul></li>
+<li><strong>Projects</strong>: Full Binder environment
+<ul>
+<li>Students’ own data analysis</li>
+<li>Complete research workflow</li>
+</ul></li>
+</ol>
+</section>
+<section id="troubleshooting-binder" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting-binder">Troubleshooting Binder</h2>
+<section id="build-fails" class="level3">
+<h3 class="anchored" data-anchor-id="build-fails">Build Fails</h3>
+<ul>
+<li>Check <code>environment.yml</code> syntax</li>
+<li>Ensure all packages are available in conda-forge</li>
+<li>Review Binder build logs</li>
+</ul>
+</section>
+<section id="slow-to-start" class="level3">
+<h3 class="anchored" data-anchor-id="slow-to-start">Slow to Start</h3>
+<ul>
+<li>Binder caches builds - first time is slow</li>
+<li>Subsequent launches are faster</li>
+<li>Consider using repo2docker locally for testing</li>
+</ul>
+</section>
+<section id="session-died" class="level3">
+<h3 class="anchored" data-anchor-id="session-died">Session Died</h3>
+<ul>
+<li>Sessions timeout after ~10 minutes of inactivity</li>
+<li>Warn students to save work frequently</li>
+<li>Provide download instructions for results</li>
+</ul>
+</section>
+</section>
+<section id="additional-resources" class="level2">
+<h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="https://mybinder.readthedocs.io/">Binder Documentation</a></li>
+<li><a href="https://github.com/binder-examples">Example Binder Repositories</a></li>
+<li><a href="https://repo2docker.readthedocs.io/">repo2docker</a> - Build Binder images locally</li>
+</ul>
 
 
 </section>

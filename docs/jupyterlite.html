@@ -116,8 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./../WebBook/assets/ANU-logo.jpg" alt="" class="navbar-logo light-content">
-    <img src="./../WebBook/assets/ANU-logo.jpg" alt="" class="navbar-logo dark-content">
+    <img src="./ANU-logo.png" alt="" class="navbar-logo light-content">
+    <img src="./ANU-logo.png" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">EMSC Quarto Course Template</span>
@@ -268,6 +268,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Pyodide Integration</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./binder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Binder Integration</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -283,6 +289,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./template-sync.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Template Synchronization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./template-doctor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Template Doctor</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -314,7 +326,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#adding-notebooks" id="toc-adding-notebooks" class="nav-link" data-scroll-target="#adding-notebooks">Adding Notebooks</a></li>
   <li><a href="#python-packages" id="toc-python-packages" class="nav-link" data-scroll-target="#python-packages">Python Packages</a></li>
   <li><a href="#accessing" id="toc-accessing" class="nav-link" data-scroll-target="#accessing">Accessing</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a>
+  <ul class="collapse">
+  <li><a href="#network-and-data" id="toc-network-and-data" class="nav-link" data-scroll-target="#network-and-data">Network and Data</a></li>
+  <li><a href="#package-availability" id="toc-package-availability" class="nav-link" data-scroll-target="#package-availability">Package Availability</a></li>
+  <li><a href="#storage-and-persistence" id="toc-storage-and-persistence" class="nav-link" data-scroll-target="#storage-and-persistence">Storage and Persistence</a></li>
+  <li><a href="#performance" id="toc-performance" class="nav-link" data-scroll-target="#performance">Performance</a></li>
+  </ul></li>
+  <li><a href="#when-to-use-binder-instead" id="toc-when-to-use-binder-instead" class="nav-link" data-scroll-target="#when-to-use-binder-instead">When to Use Binder Instead</a></li>
   </ul>
 </nav>
     </div>
@@ -375,11 +394,50 @@ pandas</code></pre>
 </section>
 <section id="limitations" class="level2">
 <h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<p>JupyterLite runs entirely in the browser, which brings some constraints:</p>
+<section id="network-and-data" class="level3">
+<h3 class="anchored" data-anchor-id="network-and-data">Network and Data</h3>
+<ul>
+<li><strong>Limited HTTP access</strong>: CORS restrictions apply</li>
+<li><strong>No direct downloads</strong>: Can’t fetch arbitrary data from the internet</li>
+<li><strong>File size limits</strong>: ~100MB practical limit</li>
+<li><strong>Workaround</strong>: Pre-load data files, or use Binder for data-intensive work</li>
+</ul>
+</section>
+<section id="package-availability" class="level3">
+<h3 class="anchored" data-anchor-id="package-availability">Package Availability</h3>
 <ul>
 <li>Only packages available in Pyodide</li>
-<li>Limited to ~100MB data</li>
-<li>No system access</li>
-<li>Persistent storage in browser only ```</li>
+<li>Check <a href="https://pyodide.org/en/stable/usage/packages-in-pyodide.html">Pyodide packages</a></li>
+</ul>
+</section>
+<section id="storage-and-persistence" class="level3">
+<h3 class="anchored" data-anchor-id="storage-and-persistence">Storage and Persistence</h3>
+<ul>
+<li>Files stored in browser only</li>
+<li>Cleared if browser cache is cleared</li>
+<li>No sharing between users</li>
+<li>Download important results</li>
+</ul>
+</section>
+<section id="performance" class="level3">
+<h3 class="anchored" data-anchor-id="performance">Performance</h3>
+<ul>
+<li>Slower than server-based Jupyter</li>
+<li>Limited memory</li>
+<li>Better for learning than production</li>
+</ul>
+</section>
+</section>
+<section id="when-to-use-binder-instead" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-binder-instead">When to Use Binder Instead</h2>
+<p>JupyterLite is excellent for teaching and simple examples, but for complex research work, consider <a href="./binder.html">Binder</a>:</p>
+<ul>
+<li>Large datasets from the internet</li>
+<li>Complex package requirements</li>
+<li>Network-intensive operations</li>
+<li>Collaborative work</li>
+<li>Production analysis ```</li>
 </ul>
 
 

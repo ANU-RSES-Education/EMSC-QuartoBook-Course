@@ -116,8 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./../WebBook/assets/ANU-logo.jpg" alt="" class="navbar-logo light-content">
-    <img src="./../WebBook/assets/ANU-logo.jpg" alt="" class="navbar-logo dark-content">
+    <img src="./ANU-logo.png" alt="" class="navbar-logo light-content">
+    <img src="./ANU-logo.png" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">EMSC Quarto Course Template</span>
@@ -268,6 +268,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Pyodide Integration</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./binder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Binder Integration</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -283,6 +289,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./template-sync.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Template Synchronization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./template-doctor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Template Doctor</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -317,6 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#manual-synchronization" id="toc-manual-synchronization" class="nav-link" data-scroll-target="#manual-synchronization">Manual Synchronization</a></li>
   <li><a href="#what-gets-synced" id="toc-what-gets-synced" class="nav-link" data-scroll-target="#what-gets-synced">What Gets Synced</a></li>
+  <li><a href="#sync-configuration" id="toc-sync-configuration" class="nav-link" data-scroll-target="#sync-configuration">Sync Configuration</a></li>
   <li><a href="#handling-conflicts" id="toc-handling-conflicts" class="nav-link" data-scroll-target="#handling-conflicts">Handling Conflicts</a>
   <ul class="collapse">
   <li><a href="#strategy-for-common-conflicts" id="toc-strategy-for-common-conflicts" class="nav-link" data-scroll-target="#strategy-for-common-conflicts">Strategy for Common Conflicts</a></li>
@@ -413,12 +426,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>✅ Build scripts (<code>build.sh</code>)</li>
 <li>✅ GitHub Actions workflows (<code>.github/workflows/</code>)</li>
-<li>✅ Configuration templates (<code>_quarto.yml</code> structure)</li>
 <li>✅ Pixi configuration (<code>pixi.toml</code>)</li>
 <li>✅ Template utilities and helpers</li>
+<li>⚠️ Configuration templates (<code>_quarto.yml</code> structure) - <strong>Handle with care</strong></li>
 <li>❌ Your course content (WebBook chapters, slides)</li>
 <li>❌ Your customizations (when in different files)</li>
 </ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Special Consideration: _quarto.yml
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>_quarto.yml</code> file is heavily modified in course repositories (it contains all your content structure). Template sync may suggest changes to this file, but these should be <strong>carefully reviewed</strong> before accepting.</p>
+<p><strong>Recommended approach:</strong> - Review infrastructure changes (format settings, new features) - Keep your content structure (chapters, parts) - Merge selectively, don’t blindly accept</p>
+</div>
+</div>
+</section>
+<section id="sync-configuration" class="level2">
+<h2 class="anchored" data-anchor-id="sync-configuration">Sync Configuration</h2>
+<p>You can configure which files to ignore in the sync process. Edit <code>.github/workflows/template-sync.yml</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> actions-template-sync</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> AndreasAugustin/actions-template-sync@v2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">source_repo_path</span><span class="kw">:</span><span class="at"> ANU-RSES-Education/EMSC-QuartoBook-Course</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">    ignored_files</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      WebBook/_quarto.yml</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      WebSlides/_quarto.yml</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      WebBook/Module*/**</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This prevents the sync from touching your content-heavy configuration files.</p>
 </section>
 <section id="handling-conflicts" class="level2">
 <h2 class="anchored" data-anchor-id="handling-conflicts">Handling Conflicts</h2>
@@ -435,12 +475,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Review the PR</strong>: Read the description of what changed</p></li>
 <li><p><strong>Check the diff</strong>: Look at specific changes file by file</p></li>
 <li><p><strong>Test locally</strong> (optional):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch the sync PR branch</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin template-sync-<span class="op">&lt;</span>date<span class="op">&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout template-sync-<span class="op">&lt;</span>date<span class="op">&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Build and test</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run quarto render WebBook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch the sync PR branch</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin template-sync-<span class="op">&lt;</span>date<span class="op">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout template-sync-<span class="op">&lt;</span>date<span class="op">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Build and test</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run quarto render WebBook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Resolve conflicts</strong>: Either through GitHub UI or locally</p></li>
 <li><p><strong>Merge when ready</strong>: Only after you’re satisfied with the changes</p></li>
 </ol>
@@ -462,9 +502,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="use-comments-to-mark-changes" class="level3">
 <h3 class="anchored" data-anchor-id="use-comments-to-mark-changes">Use Comments to Mark Changes</h3>
 <p>In files you must modify, mark your changes:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CUSTOM: Added for EMSC-3022 specific requirements</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">custom-setting</span><span class="kw">:</span><span class="at"> value</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="re">END</span><span class="co"> CUSTOM</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CUSTOM: Added for EMSC-3022 specific requirements</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">custom-setting</span><span class="kw">:</span><span class="at"> value</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="re">END</span><span class="co"> CUSTOM</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This makes it easier to preserve your changes during merges.</p>
 </section>
 </section>
@@ -493,7 +533,7 @@ Tip
 <h2 class="anchored" data-anchor-id="sync-labels">Sync Labels</h2>
 <p>Pull requests from the sync action are labeled with: - <code>template_sync</code> - Identifies automated sync PRs</p>
 <p>You can configure additional labels in the workflow:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pr_labels</span><span class="kw">:</span><span class="at"> template_sync,dependencies,infrastructure</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pr_labels</span><span class="kw">:</span><span class="at"> template_sync,dependencies,infrastructure</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="troubleshooting" class="level2">
 <h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
@@ -503,8 +543,8 @@ Tip
 <p>Ensure GitHub Actions has permissions: 1. Settings &gt; Actions &gt; General 2. Workflow permissions: “Read and write permissions” 3. “Allow GitHub Actions to create and approve pull requests” ✅</p>
 <p><strong>Want to sync specific files only</strong></p>
 <p>The action uses patterns. You can configure exclusions (advanced):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pr_branch_name_prefix</span><span class="kw">:</span><span class="at"> template_sync_</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ignored_files</span><span class="kw">:</span><span class="at"> </span><span class="st">"WebBook/Module*/**,custom/**"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pr_branch_name_prefix</span><span class="kw">:</span><span class="at"> template_sync_</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ignored_files</span><span class="kw">:</span><span class="at"> </span><span class="st">"WebBook/Module*/**,custom/**"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
