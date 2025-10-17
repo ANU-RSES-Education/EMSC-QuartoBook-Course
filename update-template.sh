@@ -130,13 +130,21 @@ if [[ "$REPO_URL" == *"EMSC-QuartoBook-Course"* ]] || [[ "$REPO_URL" == *"EMSC-Q
     echo "   Extensions and packages are now up to date"
 elif git remote | grep -q "template"; then
     print_status "Template remote found"
-    git fetch template --quiet
+    echo "   Fetching latest template changes..."
+    git fetch template
 
     BEHIND=$(git rev-list --count HEAD..template/main 2>/dev/null || echo "0")
 
     if [ "$BEHIND" -gt 0 ]; then
         print_warning "Template is $BEHIND commits ahead"
-        echo "   Run 'git diff HEAD template/main' to see changes"
+        echo ""
+        echo "   Recent template changes:"
+        git log --oneline --no-decorate HEAD..template/main | head -5 | sed 's/^/   - /'
+        echo ""
+        echo "   To see detailed changes:"
+        echo "   git diff HEAD template/main"
+        echo "   git log HEAD..template/main"
+        echo ""
         echo "   Or check the template-sync workflow for automated PRs"
     else
         print_status "Template is up to date"
