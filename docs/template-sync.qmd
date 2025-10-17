@@ -59,11 +59,39 @@ The sync will attempt to update:
 
 - ✅ Build scripts (`build.sh`)
 - ✅ GitHub Actions workflows (`.github/workflows/`)
-- ✅ Configuration templates (`_quarto.yml` structure)
 - ✅ Pixi configuration (`pixi.toml`)
 - ✅ Template utilities and helpers
+- ⚠️ Configuration templates (`_quarto.yml` structure) - **Handle with care**
 - ❌ Your course content (WebBook chapters, slides)
 - ❌ Your customizations (when in different files)
+
+::: {.callout-warning}
+## Special Consideration: _quarto.yml
+
+The `_quarto.yml` file is heavily modified in course repositories (it contains all your content structure). Template sync may suggest changes to this file, but these should be **carefully reviewed** before accepting.
+
+**Recommended approach:**
+- Review infrastructure changes (format settings, new features)
+- Keep your content structure (chapters, parts)
+- Merge selectively, don't blindly accept
+:::
+
+## Sync Configuration
+
+You can configure which files to ignore in the sync process. Edit `.github/workflows/template-sync.yml`:
+
+```yaml
+- name: actions-template-sync
+  uses: AndreasAugustin/actions-template-sync@v2
+  with:
+    source_repo_path: ANU-RSES-Education/EMSC-QuartoBook-Course
+    ignored_files: |
+      WebBook/_quarto.yml
+      WebSlides/_quarto.yml
+      WebBook/Module*/**
+```
+
+This prevents the sync from touching your content-heavy configuration files.
 
 ## Handling Conflicts
 

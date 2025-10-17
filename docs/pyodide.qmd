@@ -61,9 +61,43 @@ Common scientific packages:
 - scikit-learn
 - networkx
 
+## Limitations
+
+Pyodide has some important limitations to be aware of:
+
+### Network Requests
+
+- **Limited HTTP access**: CORS restrictions apply
+- **No direct file downloads**: Can't fetch arbitrary URLs
+- **Proxy requirements**: Some APIs may not work
+- **Workaround**: Pre-load data or use Binder for network-intensive tasks
+
+### Package Availability
+
+- Only packages compiled for WebAssembly work
+- Not all Python packages are available
+- Check [Pyodide package list](https://pyodide.org/en/stable/usage/packages-in-pyodide.html)
+
+### Performance
+
+- Slower than native Python for heavy computation
+- Limited memory (~2GB typically)
+- Better for teaching than production analysis
+
+### When to Use Binder Instead
+
+For complex tasks involving:
+- Large data downloads from the internet
+- API calls and web scraping
+- Packages not in Pyodide
+- Intensive computations
+
+See the [Binder Integration](binder.qmd) page for full-featured computing.
+
 ## Best Practices
 
 - Keep examples self-contained
-- Use small datasets
+- Use small, pre-loaded datasets
 - Provide clear instructions
 - Include expected output as reference
+- For complex work, direct students to Binder

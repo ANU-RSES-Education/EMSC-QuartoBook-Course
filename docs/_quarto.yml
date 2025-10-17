@@ -7,7 +7,7 @@ website:
   description: "Documentation for the EMSC Quarto Book Course Template"
 
   navbar:
-    logo: ../WebBook/assets/ANU-logo.jpg
+    logo: ANU-logo.png
     background: "#C58812"
     foreground: white
     left:
@@ -45,9 +45,11 @@ website:
           - webslides.qmd
           - jupyterlite.qmd
           - pyodide.qmd
+          - binder.qmd
       - section: "Maintenance"
         contents:
           - template-sync.qmd
+          - template-doctor.qmd
           - github-actions.qmd
           - troubleshooting.qmd
 

@@ -4,7 +4,7 @@ title: "EMSC Quarto Course Template"
 
 ## Overview
 
-The EMSC Quarto Course Template is a comprehensive GitHub template for creating quantitative Earth Science courses with interactive web-based content. This template combines modern web technologies to provide students with an engaging learning experience.
+The EMSC Quarto Course Template is a comprehensive GitHub template for creating quantitative Earth and Marine Sciences courses with interactive web-based content. Developed by the Research School of Earth Sciences (RSES) at the Australian National University, this template combines modern web technologies to provide students with an engaging learning experience.
 
 ### Key Features
 

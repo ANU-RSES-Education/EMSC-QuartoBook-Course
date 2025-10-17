@@ -1,0 +1,180 @@
+---
+title: "Template Doctor"
+---
+
+## Overview
+
+The Template Doctor is a planned diagnostic tool to help you keep your course repository up-to-date with the latest template improvements, extensions, and best practices.
+
+## Concept
+
+A script you can run locally to check:
+
+1. **Extension versions** - Are pyodide, jupyterlite, and other Quarto extensions current?
+2. **Configuration drift** - Has your setup diverged significantly from template best practices?
+3. **Dependency updates** - Are there newer versions of packages available?
+4. **Template improvements** - What new features are available in the template?
+
+## Planned Features
+
+### Version Checks
+
+```bash
+./template-doctor.sh --check-versions
+```
+
+Would report:
+```
+Checking template components...
+✓ Quarto: 1.6.42 (current)
+⚠ JupyterLite: 0.5.1 (0.6.0 available)
+✓ Pyodide extension: current
+⚠ r-wasm extension: update available
+```
+
+### Extension Updates
+
+```bash
+./template-doctor.sh --update-extensions
+```
+
+Would:
+- Check for extension updates
+- Optionally update them
+- Test that updates don't break your build
+
+### Configuration Audit
+
+```bash
+./template-doctor.sh --audit
+```
+
+Would check:
+- Are all recommended dependencies in `pixi.toml`?
+- Is `.gitignore` properly configured?
+- Are GitHub Actions up to date?
+- Are there template improvements you haven't adopted?
+
+### Template Diff
+
+```bash
+./template-doctor.sh --diff
+```
+
+Would show:
+- What has changed in the template since you created your repo
+- Categorized by: critical, recommended, optional
+- Helps you decide what to merge from template-sync PRs
+
+## Quick Start - Update Script Available!
+
+We've implemented a basic update script you can use now:
+
+```bash
+./update-template.sh
+```
+
+This script will:
+- Check and update Quarto extensions (r-wasm/live for pyodide)
+- Update Python packages via pixi
+- Rebuild JupyterLite if needed
+- Check for template updates
+- Run a test build
+
+### Using the Update Script
+
+From your course repository root:
+
+```bash
+# Make it executable (first time only)
+chmod +x update-template.sh
+
+# Run the update check
+./update-template.sh
+```
+
+The script is interactive and will prompt you before making changes.
+
+## Implementation Status
+
+::: {.callout-tip}
+## Basic Version Now Available!
+
+A working update script (`update-template.sh`) is now included in the template. It handles:
+
+**Current Implementation: Bash Script** ✓
+- Simple, runs anywhere
+- Interactive prompts
+- Handles common update tasks
+- Safe (asks before changes)
+
+**Future Enhancements:**
+- More automated checking
+- YAML/TOML parsing for drift detection
+- Integration with GitHub Actions
+- Automatic version comparison
+:::
+
+## Contributing Ideas
+
+If you have ideas for what the Template Doctor should check or how it should work, please:
+
+1. Open an issue on the [template repository](https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course/issues)
+2. Share your use cases
+3. Suggest checks that would be helpful
+
+## Workarounds Until Template Doctor Exists
+
+### Manual Version Checking
+
+Check Quarto extensions:
+```bash
+cd WebBook
+quarto list extensions
+```
+
+Check for extension updates:
+```bash
+quarto update extensions
+```
+
+### Manual Dependency Checking
+
+Compare your `pixi.toml` with the template:
+```bash
+# In your course repo
+diff pixi.toml path/to/template/pixi.toml
+```
+
+### Manual Template Comparison
+
+Set template as remote to compare:
+```bash
+git remote add template https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course.git
+git fetch template
+git diff main template/main -- .github/workflows/
+```
+
+## Future Vision
+
+Ideally, Template Doctor would be:
+
+1. **Automatic** - Runs as part of CI/CD
+2. **Smart** - Understands which changes matter for your course
+3. **Helpful** - Provides actionable suggestions
+4. **Safe** - Never overwrites without permission
+
+Example workflow:
+```yaml
+# In .github/workflows/template-doctor.yml
+- name: Run Template Doctor
+  run: |
+    ./template-doctor.sh --check-all --report
+
+- name: Comment on PR
+  if: github.event_name == 'pull_request'
+  run: |
+    # Post Template Doctor findings as PR comment
+```
+
+This would give you automatic health checks on every PR.

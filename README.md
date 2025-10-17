@@ -1,17 +1,18 @@
 # EMSC Quarto Course Template
 
-A comprehensive GitHub template for creating interactive, web-based quantitative Earth Science courses.
+A comprehensive GitHub template for creating interactive, web-based quantitative Earth and Marine Sciences courses. Developed by the Research School of Earth Sciences (RSES) at the Australian National University.
 
-## 📚 Features
+## Features
 
 - **Quarto Book** - Beautiful, searchable course notes with live Python execution
 - **Reveal.js Slides** - Professional presentation slides embedded in your course
 - **JupyterLite** - Full Jupyter environment running in the browser
 - **Pyodide Integration** - Run Python code directly in web pages
+- **Binder Integration** - Full-featured computing environment for complex analyses
 - **Automated Deployment** - Push to deploy via GitHub Actions
 - **Template Sync** - Automatically receive updates and improvements
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Create Your Course
 
@@ -19,12 +20,13 @@ Click **"Use this template"** above to create your own course repository.
 
 ### 2. Read the Documentation
 
-**📖 [Full Documentation](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/)**
+**[Full Documentation](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/)**
 
 The documentation covers:
 - [Getting Started Guide](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/getting-started.html)
 - [Configuration Options](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/configuration.html)
 - [Customization Guide](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/customization.html)
+- [Binder Integration](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/binder.html)
 - [Template Sync](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/template-sync.html)
 - [Troubleshooting](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/troubleshooting.html)
 
@@ -52,14 +54,14 @@ quarto render WebBook
 3. Create slides in `WebSlides/` - Build presentations
 4. Push to deploy - GitHub Actions automatically builds and publishes
 
-## 📖 Examples
+## Examples
 
-Courses built with this template:
+Courses built with this template (hosted under ANU-RSES-Education):
 
 - [EMSC-3022: Planetary Sciences](https://github.com/ANU-RSES-Education/EMSC-3022)
 - [Zero to Python for Earth Sciences](https://github.com/ANU-RSES-Education/Zero-2-Python-for-Earth-Sciences)
 
-## 🛠 Technology Stack
+## Technology Stack
 
 - [Quarto](https://quarto.org/) - Scientific publishing system
 - [Pixi](https://prefix.dev/docs/pixi/overview) - Package manager
@@ -68,7 +70,7 @@ Courses built with this template:
 - [Reveal.js](https://revealjs.com/) - HTML presentations
 - GitHub Actions - Automated deployment
 
-## 📝 Repository Structure
+## Repository Structure
 
 ```
 EMSC-QuartoBook-Course/
@@ -84,7 +86,7 @@ EMSC-QuartoBook-Course/
 └── build.sh               # Local build script
 ```
 
-## 🔄 Keeping Up to Date
+## Keeping Up to Date
 
 This template includes automatic synchronization:
 
@@ -94,16 +96,16 @@ This template includes automatic synchronization:
 
 See the [Template Sync documentation](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/template-sync.html) for details.
 
-## 💡 Getting Help
+## Getting Help
 
 - **Documentation**: [anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/)
 - **Issues**: [GitHub Issues](https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course/discussions)
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) for details.
 
-## 🏛 Acknowledgments
+## Acknowledgments
 
-Developed by the [ANU Research School of Earth Sciences](https://earthsciences.anu.edu.au/)
+Developed by the Research School of Earth Sciences (RSES) at the [Australian National University](https://earthsciences.anu.edu.au/).
