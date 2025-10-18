@@ -2,19 +2,28 @@
 
 This guide explains how to keep your course repository up-to-date with the latest extensions, packages, and template improvements.
 
-## Quick Update
+## Quick Update (Recommended)
 
-Run the update script:
+Run the interactive update script:
 
 ```bash
 ./update-template.sh
 ```
 
-This interactive script will guide you through updating:
-1. Quarto extensions (r-wasm/live for pyodide)
-2. Python packages (via pixi)
-3. JupyterLite
-4. Template improvements
+This script intelligently checks all components and only prompts for updates when needed:
+
+1. **Quarto extensions** - Compares installed vs available versions
+2. **Python packages** - Uses `pixi update --dry-run` to check for updates
+3. **JupyterLite** - Detects if source files changed since last build
+4. **Template improvements** - Fetches and shows recent template changes
+5. **Test build** - Optional build verification
+
+The script shows clear status for each component:
+- ✓ Green checkmarks when everything is up to date
+- ⚠ Yellow warnings when updates are available
+- Only prompts for action when necessary
+
+See the [Template Doctor documentation](https://anu-rses-education.github.io/EMSC-QuartoBook-Course/docs/template-doctor.html) for detailed information about the script.
 
 ## What Gets Updated
 

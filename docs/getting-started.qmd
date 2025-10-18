@@ -103,6 +103,20 @@ other-links:
     href: https://github.com/YOUR-USERNAME/YOUR-COURSE-NAME
 ```
 
+## Keeping Your Course Updated
+
+The template includes an interactive update script that checks for:
+- Extension updates
+- Python package updates
+- JupyterLite rebuild needs
+- Template improvements
+
+```bash
+./update-template.sh
+```
+
+See [Template Doctor](template-doctor.qmd) for details.
+
 ## Next Steps
 
 - [Configure your course](configuration.qmd) - Detailed configuration options

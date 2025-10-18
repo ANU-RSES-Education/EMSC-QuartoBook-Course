@@ -66,20 +66,46 @@ Would show:
 - Categorized by: critical, recommended, optional
 - Helps you decide what to merge from template-sync PRs
 
-## Quick Start - Update Script Available!
+## Update Script - Available Now!
 
-We've implemented a basic update script you can use now:
+An interactive update script is included in the template:
 
 ```bash
 ./update-template.sh
 ```
 
-This script will:
-- Check and update Quarto extensions (r-wasm/live for pyodide)
-- Update Python packages via pixi
-- Rebuild JupyterLite if needed
-- Check for template updates
-- Run a test build
+### What It Does
+
+The script intelligently checks and updates all template components:
+
+**1. Quarto Extensions**
+- Shows installed version of r-wasm/live extension
+- Queries GitHub for latest available version
+- Compares versions and indicates if update is available
+- Provides instructions for updating
+
+**2. Python Packages**
+- Runs `pixi update --dry-run` to check for available updates
+- Only prompts to update if updates are actually available
+- Shows key package versions when everything is current
+- Applies updates via `pixi update` if confirmed
+
+**3. JupyterLite**
+- Checks if source files have changed since last build
+- Compares modification times of `content/` and `requirements.txt` vs `dist/`
+- Only prompts to rebuild if changes are detected
+- Shows last build time when up to date
+- Updates timestamp after successful rebuild
+
+**4. Template Updates**
+- Fetches latest changes from template repository
+- Shows how many commits ahead the template is
+- Lists recent template changes
+- Provides git commands to review detailed changes
+
+**5. Test Build** (optional)
+- Offers to run a test build of WebBook
+- Verifies everything works after updates
 
 ### Using the Update Script
 
@@ -93,7 +119,45 @@ chmod +x update-template.sh
 ./update-template.sh
 ```
 
-The script is interactive and will prompt you before making changes.
+The script is interactive and will only make changes when you confirm.
+
+### Example Output
+
+```
+========================================
+EMSC Template Update Script
+========================================
+
+✓ Pixi found
+
+1. Checking Quarto extensions...
+✓ Found r-wasm/live extension (live-html/pyodide)
+   Installed version: 0.1.3
+   Latest release:    0.1.2
+   (You have a newer version than the latest release)
+
+2. Checking Python packages...
+   Checking for updates...
+✓ All packages are up to date
+
+   Key packages:
+   quarto                1.8.25
+   jupyterlite          0.5.1
+   ipython              9.6.0
+
+3. Checking JupyterLite...
+✓ Found JupyterLite configuration
+✓ JupyterLite build is up to date
+   Last built: 2025-10-18 17:09:15
+
+4. Checking for template updates...
+✓ Template remote found
+   Fetching latest template changes...
+✓ Template is up to date
+
+5. Test build
+   Run test build? (y/n)
+```
 
 ## Implementation Status
 
