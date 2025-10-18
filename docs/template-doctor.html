@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-77c97448bf02e83a43367b2c575abe4b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bcf861debae0e7e635fd0a100a1c9376.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -330,9 +330,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#configuration-audit" id="toc-configuration-audit" class="nav-link" data-scroll-target="#configuration-audit">Configuration Audit</a></li>
   <li><a href="#template-diff" id="toc-template-diff" class="nav-link" data-scroll-target="#template-diff">Template Diff</a></li>
   </ul></li>
-  <li><a href="#quick-start---update-script-available" id="toc-quick-start---update-script-available" class="nav-link" data-scroll-target="#quick-start---update-script-available">Quick Start - Update Script Available!</a>
+  <li><a href="#update-script---available-now" id="toc-update-script---available-now" class="nav-link" data-scroll-target="#update-script---available-now">Update Script - Available Now!</a>
   <ul class="collapse">
+  <li><a href="#what-it-does" id="toc-what-it-does" class="nav-link" data-scroll-target="#what-it-does">What It Does</a></li>
   <li><a href="#using-the-update-script" id="toc-using-the-update-script" class="nav-link" data-scroll-target="#using-the-update-script">Using the Update Script</a></li>
+  <li><a href="#example-output" id="toc-example-output" class="nav-link" data-scroll-target="#example-output">Example Output</a></li>
   </ul></li>
   <li><a href="#implementation-status" id="toc-implementation-status" class="nav-link" data-scroll-target="#implementation-status">Implementation Status</a></li>
   <li><a href="#contributing-ideas" id="toc-contributing-ideas" class="nav-link" data-scroll-target="#contributing-ideas">Contributing Ideas</a></li>
@@ -410,11 +412,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Would show: - What has changed in the template since you created your repo - Categorized by: critical, recommended, optional - Helps you decide what to merge from template-sync PRs</p>
 </section>
 </section>
-<section id="quick-start---update-script-available" class="level2">
-<h2 class="anchored" data-anchor-id="quick-start---update-script-available">Quick Start - Update Script Available!</h2>
-<p>We’ve implemented a basic update script you can use now:</p>
+<section id="update-script---available-now" class="level2">
+<h2 class="anchored" data-anchor-id="update-script---available-now">Update Script - Available Now!</h2>
+<p>An interactive update script is included in the template:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./update-template.sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This script will: - Check and update Quarto extensions (r-wasm/live for pyodide) - Update Python packages via pixi - Rebuild JupyterLite if needed - Check for template updates - Run a test build</p>
+<section id="what-it-does" class="level3">
+<h3 class="anchored" data-anchor-id="what-it-does">What It Does</h3>
+<p>The script intelligently checks and updates all template components:</p>
+<p><strong>1. Quarto Extensions</strong> - Shows installed version of r-wasm/live extension - Queries GitHub for latest available version - Compares versions and indicates if update is available - Provides instructions for updating</p>
+<p><strong>2. Python Packages</strong> - Runs <code>pixi update --dry-run</code> to check for available updates - Only prompts to update if updates are actually available - Shows key package versions when everything is current - Applies updates via <code>pixi update</code> if confirmed</p>
+<p><strong>3. JupyterLite</strong> - Checks if source files have changed since last build - Compares modification times of <code>content/</code> and <code>requirements.txt</code> vs <code>dist/</code> - Only prompts to rebuild if changes are detected - Shows last build time when up to date - Updates timestamp after successful rebuild</p>
+<p><strong>4. Template Updates</strong> - Fetches latest changes from template repository - Shows how many commits ahead the template is - Lists recent template changes - Provides git commands to review detailed changes</p>
+<p><strong>5. Test Build</strong> (optional) - Offers to run a test build of WebBook - Verifies everything works after updates</p>
+</section>
 <section id="using-the-update-script" class="level3">
 <h3 class="anchored" data-anchor-id="using-the-update-script">Using the Update Script</h3>
 <p>From your course repository root:</p>
@@ -423,7 +433,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the update check</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./update-template.sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The script is interactive and will prompt you before making changes.</p>
+<p>The script is interactive and will only make changes when you confirm.</p>
+</section>
+<section id="example-output" class="level3">
+<h3 class="anchored" data-anchor-id="example-output">Example Output</h3>
+<pre><code>========================================
+EMSC Template Update Script
+========================================
+
+✓ Pixi found
+
+1. Checking Quarto extensions...
+✓ Found r-wasm/live extension (live-html/pyodide)
+   Installed version: 0.1.3
+   Latest release:    0.1.2
+   (You have a newer version than the latest release)
+
+2. Checking Python packages...
+   Checking for updates...
+✓ All packages are up to date
+
+   Key packages:
+   quarto                1.8.25
+   jupyterlite          0.5.1
+   ipython              9.6.0
+
+3. Checking JupyterLite...
+✓ Found JupyterLite configuration
+✓ JupyterLite build is up to date
+   Last built: 2025-10-18 17:09:15
+
+4. Checking for template updates...
+✓ Template remote found
+   Fetching latest template changes...
+✓ Template is up to date
+
+5. Test build
+   Run test build? (y/n)</code></pre>
 </section>
 </section>
 <section id="implementation-status" class="level2">
@@ -458,23 +504,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="manual-version-checking" class="level3">
 <h3 class="anchored" data-anchor-id="manual-version-checking">Manual Version Checking</h3>
 <p>Check Quarto extensions:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> WebBook</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> list extensions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> WebBook</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> list extensions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Check for extension updates:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> update extensions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> update extensions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="manual-dependency-checking" class="level3">
 <h3 class="anchored" data-anchor-id="manual-dependency-checking">Manual Dependency Checking</h3>
 <p>Compare your <code>pixi.toml</code> with the template:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In your course repo</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> pixi.toml path/to/template/pixi.toml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In your course repo</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> pixi.toml path/to/template/pixi.toml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="manual-template-comparison" class="level3">
 <h3 class="anchored" data-anchor-id="manual-template-comparison">Manual Template Comparison</h3>
 <p>Set template as remote to compare:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add template https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course.git</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch template</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff main template/main <span class="at">--</span> .github/workflows/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add template https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course.git</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch template</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff main template/main <span class="at">--</span> .github/workflows/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="future-vision" class="level2">
@@ -487,15 +533,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Safe</strong> - Never overwrites without permission</li>
 </ol>
 <p>Example workflow:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In .github/workflows/template-doctor.yml</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run Template Doctor</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">  run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    ./template-doctor.sh --check-all --report</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Comment on PR</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">if</span><span class="kw">:</span><span class="at"> github.event_name == 'pull_request'</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">  run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    # Post Template Doctor findings as PR comment</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In .github/workflows/template-doctor.yml</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run Template Doctor</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">  run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    ./template-doctor.sh --check-all --report</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Comment on PR</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">if</span><span class="kw">:</span><span class="at"> github.event_name == 'pull_request'</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">  run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    # Post Template Doctor findings as PR comment</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This would give you automatic health checks on every PR.</p>
 
 
