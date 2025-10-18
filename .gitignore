@@ -25,5 +25,8 @@ _output
 **/.jupyter
 jupyterlite/dist/
 
-# Claude startup symlink
+# Claude Code local files
 CLAUDE
+node_modules/
+package.json
+package-lock.json
