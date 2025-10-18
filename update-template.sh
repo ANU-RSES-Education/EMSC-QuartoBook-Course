@@ -127,14 +127,28 @@ if [ -d "jupyterlite" ]; then
 
     if [ -f "requirements.txt" ]; then
         print_status "Found JupyterLite configuration"
-        echo "   Requirements:"
-        cat requirements.txt
 
-        read -p "   Rebuild JupyterLite? (y/n) " -n 1 -r
-        echo
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            $PIXI_CMD jupyter lite build --contents content --output-dir dist
-            print_status "JupyterLite rebuilt"
+        # Check if rebuild is needed
+        NEEDS_REBUILD=false
+        if [ ! -d "dist" ]; then
+            print_warning "dist/ directory not found"
+            NEEDS_REBUILD=true
+        elif [ -n "$(find content requirements.txt -newer dist 2>/dev/null)" ]; then
+            print_warning "Source files modified since last build"
+            NEEDS_REBUILD=true
+        else
+            print_status "JupyterLite build is up to date"
+            echo "   Last built: $(stat -f "%Sm" -t "%Y-%m-%d %H:%M:%S" dist 2>/dev/null || echo 'unknown')"
+        fi
+
+        if [ "$NEEDS_REBUILD" = true ]; then
+            echo ""
+            read -p "   Rebuild JupyterLite? (y/n) " -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+                $PIXI_CMD jupyter lite build --contents content --output-dir dist
+                print_status "JupyterLite rebuilt"
+            fi
         fi
     fi
 
