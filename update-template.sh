@@ -54,14 +54,12 @@ if echo "$EXTENSIONS" | grep -q "r-wasm/live"; then
     print_status "Found r-wasm/live extension (live-html/pyodide)"
 
     # Show current version
-    echo "$EXTENSIONS" | grep "r-wasm/live"
-
-    read -p "   Update r-wasm/live extension? (y/n) " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        $PIXI_CMD quarto update extension r-wasm/live
-        print_status "Extension updated"
-    fi
+    CURRENT_VERSION=$(echo "$EXTENSIONS" | grep "r-wasm/live" | awk '{print $2}')
+    echo "   Current version: $CURRENT_VERSION"
+    echo ""
+    echo "   Note: To update, you can reinstall the extension:"
+    echo "   cd WebBook && quarto remove extension r-wasm/live"
+    echo "   cd WebBook && quarto add r-wasm/live"
 else
     print_warning "r-wasm/live extension not found"
     read -p "   Install r-wasm/live extension? (y/n) " -n 1 -r
