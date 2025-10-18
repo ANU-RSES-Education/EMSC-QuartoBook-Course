@@ -95,14 +95,24 @@ echo ""
 echo -e "${BLUE}2. Checking Python packages...${NC}"
 
 if command -v pixi &> /dev/null; then
-    echo "   Current packages:"
-    pixi list | grep -E "quarto|jupyterlite|ipython|jupyter"
+    echo "   Checking for updates..."
+    UPDATE_CHECK=$(pixi update --dry-run 2>&1)
 
-    read -p "   Update Python packages? (y/n) " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        pixi update
-        print_status "Python packages updated"
+    if echo "$UPDATE_CHECK" | grep -q "up-to-date"; then
+        print_status "All packages are up to date"
+        echo ""
+        echo "   Key packages:"
+        pixi list | grep -E "quarto|jupyterlite|ipython|jupyter" | head -5
+    else
+        print_warning "Updates available!"
+        echo "$UPDATE_CHECK"
+        echo ""
+        read -p "   Update Python packages? (y/n) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            pixi update
+            print_status "Python packages updated"
+        fi
     fi
 else
     print_warning "Pixi not available, skipping Python package updates"
