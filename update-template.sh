@@ -55,11 +55,29 @@ if echo "$EXTENSIONS" | grep -q "r-wasm/live"; then
 
     # Show current version
     CURRENT_VERSION=$(echo "$EXTENSIONS" | grep "r-wasm/live" | awk '{print $2}')
-    echo "   Current version: $CURRENT_VERSION"
-    echo ""
-    echo "   Note: To update, you can reinstall the extension:"
-    echo "   cd WebBook && quarto remove extension r-wasm/live"
-    echo "   cd WebBook && quarto add r-wasm/live"
+    echo "   Installed version: $CURRENT_VERSION"
+
+    # Check latest version from GitHub
+    if command -v curl &> /dev/null; then
+        LATEST_VERSION=$(curl -s https://api.github.com/repos/r-wasm/quarto-live/releases/latest | grep '"tag_name"' | sed -E 's/.*"v([^"]+)".*/\1/')
+        if [ -n "$LATEST_VERSION" ]; then
+            echo "   Latest release:    $LATEST_VERSION"
+
+            if [ "$CURRENT_VERSION" != "$LATEST_VERSION" ]; then
+                if [ "$CURRENT_VERSION" \> "$LATEST_VERSION" ]; then
+                    echo "   (You have a newer version than the latest release)"
+                else
+                    print_warning "Update available!"
+                    echo ""
+                    echo "   To update:"
+                    echo "   cd WebBook && quarto remove extension r-wasm/live"
+                    echo "   cd WebBook && quarto add r-wasm/live"
+                fi
+            else
+                echo "   ✓ Extension is up to date"
+            fi
+        fi
+    fi
 else
     print_warning "r-wasm/live extension not found"
     read -p "   Install r-wasm/live extension? (y/n) " -n 1 -r
