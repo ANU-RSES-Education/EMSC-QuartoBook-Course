@@ -147,7 +147,11 @@ if [ -d "jupyterlite" ]; then
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 $PIXI_CMD jupyter lite build --contents content --output-dir dist
+                touch dist  # Update timestamp to mark as current
                 print_status "JupyterLite rebuilt"
+            else
+                echo ""
+                echo "   Tip: To mark as current without rebuilding, run: touch jupyterlite/dist"
             fi
         fi
     fi
