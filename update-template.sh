@@ -177,26 +177,87 @@ elif git remote | grep -q "template"; then
     echo "   Fetching latest template changes..."
     git fetch template
 
-    BEHIND=$(git rev-list --count HEAD..template/main 2>/dev/null || echo "0")
+    # Try to find the last template sync commit
+    # Template-sync PRs have format: "chore/template_sync_<hash>"
+    LAST_SYNC=$(git log --all --oneline | grep "template_sync_[a-f0-9]" | head -1 | grep -oE 'template_sync_[a-f0-9]{7}' | sed 's/template_sync_//' || echo "")
 
-    if [ "$BEHIND" -gt 0 ]; then
-        print_warning "Template is $BEHIND commits ahead"
-        echo ""
-        echo "   Recent template changes:"
-        git log --oneline --no-decorate HEAD..template/main | head -5 | sed 's/^/   - /'
-        echo ""
-        echo "   To see detailed changes:"
-        echo "   git diff HEAD template/main"
-        echo "   git log HEAD..template/main"
-        echo ""
-        echo "   Or check the template-sync workflow for automated PRs"
+    if [ -n "$LAST_SYNC" ]; then
+        # Check if this commit exists in template/main
+        if git cat-file -e template/main 2>/dev/null; then
+            # Find this commit in template history
+            SYNC_IN_TEMPLATE=$(git log template/main --oneline | grep "^${LAST_SYNC}" | head -1 || echo "")
+
+            if [ -n "$SYNC_IN_TEMPLATE" ]; then
+                # Count new commits since last sync
+                NEW_COMMITS=$(git rev-list --count ${LAST_SYNC}..template/main 2>/dev/null || echo "0")
+
+                if [ "$NEW_COMMITS" -gt 0 ]; then
+                    print_warning "Template has $NEW_COMMITS new commit(s) since last sync"
+                    echo ""
+                    echo "   New template changes:"
+                    git log --oneline --no-decorate ${LAST_SYNC}..template/main | head -5 | sed 's/^/   - /'
+                    if [ "$NEW_COMMITS" -gt 5 ]; then
+                        echo "   ... and $((NEW_COMMITS - 5)) more"
+                    fi
+                    echo ""
+                    echo "   To see detailed changes:"
+                    echo "   git log ${LAST_SYNC}..template/main"
+                    echo "   git diff ${LAST_SYNC}..template/main"
+                    echo ""
+                    echo "   The template-sync workflow will create a PR with these changes"
+                else
+                    print_status "Template is up to date"
+                    echo "   (Last synced at commit: ${LAST_SYNC:0:7})"
+                fi
+            else
+                print_warning "Last sync commit not found in template history"
+            fi
+        fi
     else
-        print_status "Template is up to date"
+        # No template sync found, fall back to simple comparison
+        BEHIND=$(git rev-list --count HEAD..template/main 2>/dev/null || echo "0")
+
+        if [ "$BEHIND" -gt 0 ]; then
+            print_warning "Template has changes (no sync history detected)"
+            echo ""
+            echo "   To see template commits:"
+            echo "   git log template/main | head -20"
+            echo ""
+            echo "   The template-sync workflow will create PRs automatically"
+        else
+            print_status "No new template commits detected"
+        fi
     fi
 else
     print_warning "Template remote not configured"
-    echo "   To add template remote:"
-    echo "   git remote add template https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course.git"
+    echo ""
+    read -p "   Add template remote now? (y/n) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        git remote add template https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course.git
+        print_status "Template remote added"
+        echo "   Fetching latest template changes..."
+        git fetch template
+
+        BEHIND=$(git rev-list --count HEAD..template/main 2>/dev/null || echo "0")
+
+        if [ "$BEHIND" -gt 0 ]; then
+            print_warning "Template is $BEHIND commits ahead"
+            echo ""
+            echo "   Recent template changes:"
+            git log --oneline --no-decorate HEAD..template/main | head -5 | sed 's/^/   - /'
+            echo ""
+            echo "   To see detailed changes:"
+            echo "   git diff HEAD template/main"
+            echo "   git log HEAD..template/main"
+        else
+            print_status "Template is up to date"
+        fi
+    else
+        echo ""
+        echo "   You can add it later with:"
+        echo "   git remote add template https://github.com/ANU-RSES-Education/EMSC-QuartoBook-Course.git"
+    fi
 fi
 
 # 5. Test build
