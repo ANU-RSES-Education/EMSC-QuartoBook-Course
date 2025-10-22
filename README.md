@@ -54,6 +54,21 @@ quarto render WebBook
 3. Create slides in `WebSlides/` - Build presentations
 4. Push to deploy - GitHub Actions automatically builds and publishes
 
+### 5. Preview Locally
+
+Because the book uses pyodide for interactive Python examples, you need to serve it over HTTP (not just open HTML files):
+
+```bash
+python serve-book.py
+```
+
+This will:
+- Start a local HTTP server (default port 8000)
+- Automatically open your browser to view the book
+- Auto-select an available port if 8000 is in use
+
+Press `Ctrl+C` to stop the server.
+
 ## Examples
 
 Courses built with this template (hosted under ANU-RSES-Education):
